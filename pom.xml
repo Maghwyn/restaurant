@@ -146,7 +146,7 @@
                             <outfile>${project.basedir}/target/${project.artifactId}-${project.version}.exe</outfile>
                             <jar>${project.basedir}/target/${project.artifactId}-${project.version}-shade.jar</jar>
                             <jre>
-                                <path>/Users/maghwyn/Library/Java/JavaVirtualMachines/openjdk-18/Contents/Home/bin</path>
+                                <path>$JAVA_HOME$/bin</path>
                             </jre>
                             <versionInfo>
                                 <fileVersion>${project.version}</fileVersion>
