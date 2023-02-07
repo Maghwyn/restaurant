@@ -5,6 +5,7 @@ module com.codingfactory.restaurant {
 
     requires net.synedra.validatorfx;
     requires org.kordamp.ikonli.javafx;
+    requires org.apache.commons.lang3;
 
     opens com.codingfactory.restaurant to javafx.fxml;
     opens com.codingfactory.restaurant.controllers to javafx.fxml;
