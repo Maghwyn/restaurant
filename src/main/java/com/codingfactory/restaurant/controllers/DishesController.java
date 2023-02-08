@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -43,10 +44,17 @@ public class DishesController implements Initializable {
     private Button redirectButton;
     private GridPane grid;
     private Text textCategory;
+    private Boolean isAllDishes = false;
 
 
     @FXML
     private VBox containerToAppendGrid;
+
+    @FXML
+    private ToggleButton seeAllDishes;
+
+    @FXML
+    private VBox containerAddGrid;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -64,6 +72,11 @@ public class DishesController implements Initializable {
                 // TODO DISPLAY FORM TO ADD DISH
             });
         }
+        seeAllDishes.setOnAction(e -> {
+            isAllDishes = !isAllDishes;
+            containerAddGrid.getChildren().clear();
+            renderDishes();
+        });
 
     }
 
@@ -104,10 +117,16 @@ public class DishesController implements Initializable {
     public void getDishesEntries() {
         grid = new GridPane();
         grid.setGridLinesVisible(true);
-        containerToAppendGrid.getChildren().add(grid);
+        containerAddGrid.getChildren().add(grid);
+        index = 0;
 
         Collection<Dish> dishListEntries;
-        dishListEntries = attend.stream().map(n -> (Dish) n).filter((Dish n) -> n.getCategory().equals("entrées")).collect(Collectors.toList());
+        if (isAllDishes) {
+            dishListEntries = attend.stream().map(n -> (Dish) n).filter((Dish n) -> n.getCategory().equals("entrées")).collect(Collectors.toList());
+        } else {
+            dishListEntries = attend.stream().map(n -> (Dish) n).filter((Dish n) -> n.getCategory().equals("entrées") && n.getQuantity() > 0).collect(Collectors.toList());
+        }
+
         dishListEntries.stream().forEach((Dish n) -> {
             if (index == 7) {
                 index = 0;
@@ -148,20 +167,27 @@ public class DishesController implements Initializable {
     }
     public void getDishesMain() {
         grid = new GridPane();
+        vBox = new VBox();
         grid.setGridLinesVisible(true);
         hBox = new HBox();
         hBox.setAlignment(Pos.CENTER);
         textCategory = new Text();
         textCategory.setText("Plats");
 
-        containerToAppendGrid.getChildren().add(hBox);
+        containerAddGrid.getChildren().add(hBox);
         hBox.getChildren().add(textCategory);
-        containerToAppendGrid.getChildren().add(grid);
+        containerAddGrid.getChildren().add(vBox);
+        vBox.getChildren().add(grid);
         index = 0;
 
 
         Collection<Dish> dishListMain;
-        dishListMain = attend.stream().map(n -> (Dish) n).filter((Dish n) -> n.getCategory().equals("plats")).collect(Collectors.toList());
+        if (isAllDishes) {
+            dishListMain = attend.stream().map(n -> (Dish) n).filter((Dish n) -> n.getCategory().equals("plats") ).collect(Collectors.toList());
+        } else {
+            dishListMain = attend.stream().map(n -> (Dish) n).filter((Dish n) -> n.getCategory().equals("plats") && n.getQuantity() > 0).collect(Collectors.toList());
+        }
+
         dishListMain.stream().forEach((Dish n) -> {
             if (index == 7) {
                 index = 0;
@@ -203,20 +229,29 @@ public class DishesController implements Initializable {
     }
     public void getDishesDeserts() {
         grid = new GridPane();
+        vBox = new VBox();
         grid.setGridLinesVisible(true);
         hBox = new HBox();
         hBox.setAlignment(Pos.CENTER);
         textCategory = new Text();
         textCategory.setText("Desserts");
 
-        containerToAppendGrid.getChildren().add(hBox);
+        containerAddGrid.getChildren().add(hBox);
         hBox.getChildren().add(textCategory);
-        containerToAppendGrid.getChildren().add(grid);
+
+        containerAddGrid.getChildren().add(vBox);
+        vBox.getChildren().add(grid);
         index = 0;
 
 
         Collection<Dish> dishListMain;
-        dishListMain = attend.stream().map(n -> (Dish) n).filter((Dish n) -> n.getCategory().equals("desserts")).collect(Collectors.toList());
+        if (isAllDishes) {
+            System.out.println("pass here True");
+            dishListMain = attend.stream().map(n -> (Dish) n).filter((Dish n) -> n.getCategory().equals("desserts")).collect(Collectors.toList());
+        } else {
+            dishListMain = attend.stream().map(n -> (Dish) n).filter((Dish n) -> n.getCategory().equals("desserts") && n.getQuantity() > 0).collect(Collectors.toList());
+        }
+
         dishListMain.stream().forEach((Dish n) -> {
             if (index == 7) {
                 index = 0;
