@@ -1,8 +1,10 @@
 package com.codingfactory.restaurant;
+
 import com.mongodb.MongoClientURI;
 import com.mongodb.MongoClient;
 import com.mongodb.client.MongoDatabase;
 import io.github.cdimascio.dotenv.Dotenv;
+
 public class  MongoConnection{
     private static MongoDatabase database;
 
