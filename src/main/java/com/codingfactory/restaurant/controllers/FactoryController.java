@@ -6,7 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
@@ -17,7 +17,7 @@ import java.util.ResourceBundle;
 
 public class FactoryController implements Initializable {
     @FXML
-    private VBox view;
+    private HBox view;
 
     @FXML
     private DrawerController drawerController; // Injected
@@ -26,9 +26,14 @@ public class FactoryController implements Initializable {
     private ModalController modalController; // Injected
 
     @FXML
+    private TimerController timerController; // Injected
+
+    @FXML
     private FactoryInterface pageController; // Injected
 
     private App app;
+
+    public boolean canTakeOrder;
 
     public void setApp(App app) {
         this.app = app;
@@ -78,6 +83,9 @@ public class FactoryController implements Initializable {
         if(pageController != null) {
             setFactoryControllerToChild(pageController);
         }
+
+        canTakeOrder = true;
+        timerController.setFactoryController(this);
         drawerController.setFactoryController(this);
     }
 }
