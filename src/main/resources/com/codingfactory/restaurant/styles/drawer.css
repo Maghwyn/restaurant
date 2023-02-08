@@ -1,0 +1,16 @@
+#drawer {
+    -fx-background-color: gray;
+}
+
+.drawerOption {
+    -fx-cursor: hand;
+}
+
+.drawerOption:hover {
+    -fx-background-color: green;
+    -fx-text-fill: white;
+}
+
+.drawerToggle {
+    -fx-cursor: hand;
+}
