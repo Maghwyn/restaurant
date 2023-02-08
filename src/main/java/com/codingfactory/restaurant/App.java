@@ -1,5 +1,6 @@
 package com.codingfactory.restaurant;
 
+import com.mongodb.client.MongoDatabase;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
@@ -26,6 +27,8 @@ public class App extends Application {
         stage.setTitle("El Ristorante");
         stage.setScene(scene);
         stage.show();
+        // database use Connection
+        MongoDatabase db = MongoConnection.getDatabase();
     }
 
     public static void main(String[] args) {
