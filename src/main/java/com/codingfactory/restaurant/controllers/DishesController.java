@@ -25,7 +25,7 @@ import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 public class DishesController implements Initializable {
-    public List attend = new ArrayList();
+    public List<Dish> attend = new ArrayList<Dish>();
     public ObservableList<Dish> list;
     private String name;
     private String description;
@@ -40,6 +40,8 @@ public class DishesController implements Initializable {
     private HBox hBox;
     private ColumnConstraints column;
     private Button redirectButton;
+    private GridPane grid;
+    private Text textCategory;
 
 
     @FXML
@@ -69,47 +71,9 @@ public class DishesController implements Initializable {
     }
 
     public void renderDishes () {
-        GridPane grid = new GridPane();
-//        grid.setGridLinesVisible(true);
-        containerToAppendGrid.getChildren().add(grid);
-
-        Collection<Dish> dishList;
-        dishList = (Collection<Dish>) attend.stream().map(n -> (Dish) n).collect(Collectors.toList());
-        dishList.stream().forEach((n) -> {
-            if (index == 7) {
-                index = 0;
-                indexRow ++;
-                vBox = new VBox();
-                vBox.setAlignment(Pos.CENTER);
-                column = new ColumnConstraints();
-                column.setPercentWidth(20);
-                grid.getColumnConstraints().add(column);
-                grid.add(vBox, index, indexRow);
-                vBox.getChildren().add(new Text(n.getName()));
-                vBox.getChildren().add(new Text(n.getDescription()));
-                vBox.getChildren().add(new Text(String.valueOf(n.getPrice())));
-                vBox.getChildren().add(new Text(n.getUrl())); // TODO CHANGE TO IMG
-                vBox.getChildren().add(new Text(n.getCategory()));
-                vBox.getChildren().add(new Text(String.valueOf(n.getCost())));
-                vBox.getChildren().add(new Text(String.valueOf(n.getQuantity())));
-            } else {
-                vBox = new VBox();
-                vBox.setAlignment(Pos.CENTER);
-                column = new ColumnConstraints();
-                column.setPercentWidth(20);
-                grid.getColumnConstraints().add(column);
-                grid.add(vBox, index, indexRow);
-                vBox.getChildren().add(new Text(n.getName()));
-                vBox.getChildren().add(new Text(n.getDescription()));
-                vBox.getChildren().add(new Text(String.valueOf(n.getPrice())));
-                vBox.getChildren().add(new Text(n.getUrl())); // TODO CHANGE TO IMG
-                vBox.getChildren().add(new Text(n.getCategory()));
-                vBox.getChildren().add(new Text(String.valueOf(n.getCost())));
-                vBox.getChildren().add(new Text(String.valueOf(n.getQuantity())));
-                index++;
-            }
-
-        });
+        getDishesEntries();
+        getDishesMain();
+        getDishesDeserts();
 
     }
     public ObservableList getAllDishes() {
@@ -135,4 +99,157 @@ public class DishesController implements Initializable {
             cursor.close();
         }
     }
+
+    public void getDishesEntries() {
+        grid = new GridPane();
+        grid.setGridLinesVisible(true);
+        containerToAppendGrid.getChildren().add(grid);
+
+        Collection<Dish> dishListEntries;
+        dishListEntries = attend.stream().map(n -> (Dish) n).filter((Dish n) -> n.getCategory().equals("entrées")).collect(Collectors.toList());
+        dishListEntries.stream().forEach((Dish n) -> {
+            if (index == 7) {
+                index = 0;
+                indexRow ++;
+                vBox = new VBox();
+                vBox.setAlignment(Pos.CENTER);
+                column = new ColumnConstraints();
+                column.setPercentWidth(20);
+                grid.getColumnConstraints().add(column);
+                grid.add(vBox, index, indexRow);
+                vBox.getChildren().add(new Text(n.getName()));
+                vBox.getChildren().add(new Text(n.getDescription()));
+                vBox.getChildren().add(new Text(String.valueOf(n.getPrice())));
+                vBox.getChildren().add(new Text(n.getUrl())); // TODO CHANGE TO IMG
+                vBox.getChildren().add(new Text(n.getCategory()));
+                vBox.getChildren().add(new Text(String.valueOf(n.getCost())));
+                vBox.getChildren().add(new Text(String.valueOf(n.getQuantity())));
+                index ++;
+            } else {
+                vBox = new VBox();
+                vBox.setAlignment(Pos.CENTER);
+                column = new ColumnConstraints();
+                column.setPercentWidth(20);
+                grid.getColumnConstraints().add(column);
+                grid.add(vBox, index, indexRow);
+                vBox.getChildren().add(new Text(n.getName()));
+                vBox.getChildren().add(new Text(n.getDescription()));
+                vBox.getChildren().add(new Text(String.valueOf(n.getPrice())));
+                vBox.getChildren().add(new Text(n.getUrl())); // TODO CHANGE TO IMG
+                vBox.getChildren().add(new Text(n.getCategory()));
+                vBox.getChildren().add(new Text(String.valueOf(n.getCost())));
+                vBox.getChildren().add(new Text(String.valueOf(n.getQuantity())));
+                index++;
+            }
+        });
+    }
+    public void getDishesMain() {
+        grid = new GridPane();
+        grid.setGridLinesVisible(true);
+        hBox = new HBox();
+        hBox.setAlignment(Pos.CENTER);
+        textCategory = new Text();
+        textCategory.setText("Plats");
+
+        containerToAppendGrid.getChildren().add(hBox);
+        hBox.getChildren().add(textCategory);
+        containerToAppendGrid.getChildren().add(grid);
+        index = 0;
+
+
+        Collection<Dish> dishListMain;
+        dishListMain = attend.stream().map(n -> (Dish) n).filter((Dish n) -> n.getCategory().equals("plats")).collect(Collectors.toList());
+        dishListMain.stream().forEach((Dish n) -> {
+            if (index == 7) {
+                index = 0;
+                indexRow ++;
+                vBox = new VBox();
+                vBox.setAlignment(Pos.CENTER);
+                column = new ColumnConstraints();
+                column.setPercentWidth(20);
+                grid.getColumnConstraints().add(column);
+                grid.add(vBox, index, indexRow);
+                vBox.getChildren().add(new Text(n.getName()));
+                vBox.getChildren().add(new Text(n.getDescription()));
+                vBox.getChildren().add(new Text(String.valueOf(n.getPrice())));
+                vBox.getChildren().add(new Text(n.getUrl())); // TODO CHANGE TO IMG
+                vBox.getChildren().add(new Text(n.getCategory()));
+                vBox.getChildren().add(new Text(String.valueOf(n.getCost())));
+                vBox.getChildren().add(new Text(String.valueOf(n.getQuantity())));
+                index ++;
+            } else {
+                vBox = new VBox();
+                vBox.setAlignment(Pos.CENTER);
+                column = new ColumnConstraints();
+                column.setPercentWidth(20);
+                grid.getColumnConstraints().add(column);
+                grid.add(vBox, index, indexRow);
+                vBox.getChildren().add(new Text(n.getName()));
+                vBox.getChildren().add(new Text(n.getDescription()));
+                vBox.getChildren().add(new Text(String.valueOf(n.getPrice())));
+                vBox.getChildren().add(new Text(n.getUrl())); // TODO CHANGE TO IMG
+                vBox.getChildren().add(new Text(n.getCategory()));
+                vBox.getChildren().add(new Text(String.valueOf(n.getCost())));
+                vBox.getChildren().add(new Text(String.valueOf(n.getQuantity())));
+                index++;
+            }
+
+        });
+    }
+    public void getDishesDeserts() {
+        grid = new GridPane();
+        grid.setGridLinesVisible(true);
+        hBox = new HBox();
+        hBox.setAlignment(Pos.CENTER);
+        textCategory = new Text();
+        textCategory.setText("Desserts");
+
+        containerToAppendGrid.getChildren().add(hBox);
+        hBox.getChildren().add(textCategory);
+        containerToAppendGrid.getChildren().add(grid);
+        index = 0;
+
+
+        Collection<Dish> dishListMain;
+        dishListMain = attend.stream().map(n -> (Dish) n).filter((Dish n) -> n.getCategory().equals("desserts")).collect(Collectors.toList());
+        dishListMain.stream().forEach((Dish n) -> {
+            if (index == 7) {
+                index = 0;
+                indexRow ++;
+                vBox = new VBox();
+                vBox.setAlignment(Pos.CENTER);
+                column = new ColumnConstraints();
+                column.setPercentWidth(20);
+                grid.getColumnConstraints().add(column);
+                grid.add(vBox, index, indexRow);
+                vBox.getChildren().add(new Text(n.getName()));
+                vBox.getChildren().add(new Text(n.getDescription()));
+                vBox.getChildren().add(new Text(String.valueOf(n.getPrice())));
+                vBox.getChildren().add(new Text(n.getUrl())); // TODO CHANGE TO IMG
+                vBox.getChildren().add(new Text(n.getCategory()));
+                vBox.getChildren().add(new Text(String.valueOf(n.getCost())));
+                vBox.getChildren().add(new Text(String.valueOf(n.getQuantity())));
+                index ++;
+            } else {
+                vBox = new VBox();
+                vBox.setAlignment(Pos.CENTER);
+                column = new ColumnConstraints();
+                column.setPercentWidth(20);
+                grid.getColumnConstraints().add(column);
+                grid.add(vBox, index, indexRow);
+                vBox.getChildren().add(new Text(n.getName()));
+                vBox.getChildren().add(new Text(n.getDescription()));
+                vBox.getChildren().add(new Text(String.valueOf(n.getPrice())));
+                vBox.getChildren().add(new Text(n.getUrl())); // TODO CHANGE TO IMG
+                vBox.getChildren().add(new Text(n.getCategory()));
+                vBox.getChildren().add(new Text(String.valueOf(n.getCost())));
+                vBox.getChildren().add(new Text(String.valueOf(n.getQuantity())));
+                index++;
+            }
+
+        });
+
+    }
 }
+
+
