@@ -1,5 +1,6 @@
 package com.codingfactory.restaurant.controllers;
 
+import com.codingfactory.restaurant.interfaces.FactoryInterface;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -23,7 +24,7 @@ enum State {
     CLOSED,
 }
 
-public class DrawerController implements Initializable {
+public class DrawerController implements Initializable, FactoryInterface {
     @FXML
     private GridPane drawer;
 
@@ -65,6 +66,7 @@ public class DrawerController implements Initializable {
         report.setOnMouseClicked(this::routerGoto);
     }
 
+    @Override
     public void setFactoryController(FactoryController controller) {
         this.factoryController = controller;
     }

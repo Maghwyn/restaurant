@@ -13,4 +13,6 @@ module com.codingfactory.restaurant {
     opens com.codingfactory.restaurant.controllers to javafx.fxml;
     exports com.codingfactory.restaurant;
     exports com.codingfactory.restaurant.controllers;
+    exports com.codingfactory.restaurant.interfaces;
+    opens com.codingfactory.restaurant.interfaces to javafx.fxml;
 }
