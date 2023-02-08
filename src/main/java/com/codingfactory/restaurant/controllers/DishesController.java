@@ -9,6 +9,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -125,6 +126,7 @@ public class DishesController implements Initializable {
                 vBox.getChildren().add(new Text(String.valueOf(n.getCost())));
                 vBox.getChildren().add(new Text(String.valueOf(n.getQuantity())));
                 index ++;
+                getSelectedItem(vBox, "entrées");
             } else {
                 vBox = new VBox();
                 vBox.setAlignment(Pos.CENTER);
@@ -140,6 +142,7 @@ public class DishesController implements Initializable {
                 vBox.getChildren().add(new Text(String.valueOf(n.getCost())));
                 vBox.getChildren().add(new Text(String.valueOf(n.getQuantity())));
                 index++;
+                getSelectedItem(vBox, "entrées");
             }
         });
     }
@@ -177,6 +180,7 @@ public class DishesController implements Initializable {
                 vBox.getChildren().add(new Text(String.valueOf(n.getCost())));
                 vBox.getChildren().add(new Text(String.valueOf(n.getQuantity())));
                 index ++;
+                getSelectedItem(vBox, "plats");
             } else {
                 vBox = new VBox();
                 vBox.setAlignment(Pos.CENTER);
@@ -192,6 +196,7 @@ public class DishesController implements Initializable {
                 vBox.getChildren().add(new Text(String.valueOf(n.getCost())));
                 vBox.getChildren().add(new Text(String.valueOf(n.getQuantity())));
                 index++;
+                getSelectedItem(vBox, "plats");
             }
 
         });
@@ -230,6 +235,7 @@ public class DishesController implements Initializable {
                 vBox.getChildren().add(new Text(String.valueOf(n.getCost())));
                 vBox.getChildren().add(new Text(String.valueOf(n.getQuantity())));
                 index ++;
+                getSelectedItem(vBox, "desserts");
             } else {
                 vBox = new VBox();
                 vBox.setAlignment(Pos.CENTER);
@@ -245,10 +251,28 @@ public class DishesController implements Initializable {
                 vBox.getChildren().add(new Text(String.valueOf(n.getCost())));
                 vBox.getChildren().add(new Text(String.valueOf(n.getQuantity())));
                 index++;
+                getSelectedItem(vBox, "desserts");
             }
-
         });
 
+    }
+    public void getSelectedItem(VBox vBoxClicked, String category) {
+        vBoxClicked.setOnMouseClicked(e -> {
+            Collection<Dish> dishList;
+
+            Node source = (Node) e.getSource();
+            int rowIndex = GridPane.getRowIndex(source);
+            int columnIndex = GridPane.getColumnIndex(source);
+            if (rowIndex != 0) {
+                columnIndex = GridPane.getColumnIndex(source) + 7 * rowIndex;
+            }
+
+            dishList = attend.stream().map(n -> (Dish) n).filter((Dish n) -> n.getCategory().equals(category)).collect(Collectors.toList());
+            Dish item = (Dish) dishList.toArray()[columnIndex];
+            // WE GOT THE ITEM ON CLICK ON LIST RENDERED ON CARTE
+            System.out.println(item.getName());
+
+        });
     }
 }
 
