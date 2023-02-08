@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
@@ -9,9 +11,25 @@
    <children>
       <VBox fx:id="containerToAppendGrid" prefHeight="200.0" prefWidth="100.0">
          <children>
-            <HBox alignment="CENTER" prefHeight="64.0" prefWidth="600.0">
+            <HBox alignment="CENTER" prefHeight="64.0" prefWidth="485.0" spacing="180.0">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="LA CARTE" />
+                  <VBox prefHeight="200.0" prefWidth="100.0" spacing="6.0">
+                     <children>
+                        <HBox alignment="CENTER" prefHeight="64.0" prefWidth="239.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="plats du restaurant : " />
+                              <ToggleButton fx:id="seeAllDishes" mnemonicParsing="false" prefHeight="26.0" prefWidth="42.0" text="ToggleButton" textOverrun="CENTER_ELLIPSIS" />
+                           </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </VBox>
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="41.0" prefWidth="600.0">
@@ -19,6 +37,7 @@
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Les entrées" />
                </children>
             </HBox>
+            <VBox fx:id="containerAddGrid" prefHeight="200.0" prefWidth="100.0" />
          </children>
       </VBox>
    </children>
