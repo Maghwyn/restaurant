@@ -1,19 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox fx:id="body" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="875.0" prefWidth="1404.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.codingfactory.restaurant.controllers.FactoryController">
+<AnchorPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.codingfactory.restaurant.controllers.FactoryController">
    <children>
-       <fx:include fx:id="drawer" maxWidth="250.0" prefWidth="250.0" source="drawer.fxml" HBox.hgrow="ALWAYS" />
-      <VBox fx:id="view" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+      <HBox fx:id="body" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="875.0" prefWidth="1404.0">
          <children>
-            <fx:include maxHeight="104.0" minHeight="104.0" prefHeight="104.0" source="page1.fxml" />
+             <fx:include fx:id="drawer" maxWidth="250.0" prefWidth="250.0" source="drawer.fxml" HBox.hgrow="ALWAYS" />
+            <VBox fx:id="view" prefHeight="200.0" prefWidth="100.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <fx:include fx:id="page" maxHeight="104.0" minHeight="104.0" prefHeight="104.0" source="page1.fxml" />
+               </children>
+            </VBox>
          </children>
-      </VBox>
+      </HBox>
+      <fx:include fx:id="modal" source="modal.fxml"/>
    </children>
    <stylesheets>
-       <URL value="@../styles/layout.css" />
+      <URL value="@../styles/layout.css" />
    </stylesheets>
-</HBox>
+</AnchorPane>
