@@ -1,6 +1,7 @@
 package com.codingfactory.restaurant.controllers;
 
 import com.codingfactory.restaurant.MongoConnection;
+import com.codingfactory.restaurant.interfaces.FactoryInterface;
 import com.codingfactory.restaurant.models.Dish;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
@@ -12,6 +13,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -26,7 +28,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
-public class DishesController implements Initializable {
+public class DishesController implements Initializable, FactoryInterface {
     public List<Dish> attend = new ArrayList<Dish>();
     public ObservableList<Dish> list;
     private String name;
@@ -45,6 +47,7 @@ public class DishesController implements Initializable {
     private GridPane grid;
     private Text textCategory;
     private Boolean isAllDishes = false;
+    private FactoryController factoryController;
 
 
     @FXML
@@ -55,6 +58,9 @@ public class DishesController implements Initializable {
 
     @FXML
     private VBox containerAddGrid;
+
+    @FXML
+    private Button openFormAddDish;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -68,8 +74,8 @@ public class DishesController implements Initializable {
             redirectButton.setText("Ajouter un plat");
             containerToAppendGrid.getChildren().add(hBox);
             hBox.getChildren().add(redirectButton);
-            redirectButton.setOnAction(e -> {
-                // TODO DISPLAY FORM TO ADD DISH
+            redirectButton.setOnMouseClicked(e -> {
+                factoryController.openModal("views/formAddDish.fxml", this);
             });
         }
         seeAllDishes.setOnAction(e -> {
@@ -78,10 +84,22 @@ public class DishesController implements Initializable {
             renderDishes();
         });
 
+        openFormAddDish.setOnMouseClicked(e -> {
+            factoryController.openModal("views/formAddDish.fxml", this);
+        });
+
     }
 
-    public void createDishIfNone() {
+    public void closeFormAddDish() {
+        factoryController.forceCloseModal();
+    }
 
+    public void majOnAddDish() {
+        attend.clear();
+        list.clear();
+        getAllDishes();
+        containerAddGrid.getChildren().clear();
+        renderDishes();
     }
 
     public void renderDishes () {
@@ -308,6 +326,11 @@ public class DishesController implements Initializable {
             System.out.println(item.getName());
 
         });
+    }
+
+    @Override
+    public void setFactoryController(FactoryController controller) {
+        this.factoryController = controller;
     }
 }
 

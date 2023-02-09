@@ -98,7 +98,7 @@ public class DrawerController implements Initializable, FactoryInterface {
         Target target = (Target) menuOption.getProperties().get("target");
 
         if(target.equals(Target.MENU)) {
-            factoryController.setIncludedFXML("views/page1.fxml");
+            factoryController.setIncludedFXML("views/dishesLayout.fxml");
             return;
         }
 
