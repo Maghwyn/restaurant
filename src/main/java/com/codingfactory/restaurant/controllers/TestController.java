@@ -25,11 +25,11 @@ public class TestController implements Initializable, FactoryInterface {
     }
 
     public void test1(MouseEvent e) {
-        factoryController.openModal("views/page2.fxml");
+        factoryController.openModal("views/page2.fxml", null);
     }
 
     public void test2(MouseEvent e) {
-        factoryController.openModal("views/page3.fxml");
+        factoryController.openModal("views/page3.fxml", null);
     }
 
     @Override
