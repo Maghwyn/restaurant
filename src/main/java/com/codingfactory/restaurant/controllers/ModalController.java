@@ -34,6 +34,11 @@ public class ModalController implements Initializable {
         modalContent.getChildren().clear();
     }
 
+    public void forceClose() {
+        modal.setVisible(false);
+        modalContent.getChildren().clear();
+    }
+
     public void openModal(Parent root) {
         modal.setVisible(true);
         modalContent.getChildren().add(root);
