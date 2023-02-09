@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
@@ -11,7 +12,7 @@
    <children>
       <VBox fx:id="containerToAppendGrid" prefHeight="200.0" prefWidth="100.0">
          <children>
-            <HBox alignment="CENTER" prefHeight="64.0" prefWidth="485.0" spacing="180.0">
+            <HBox alignment="CENTER" prefHeight="64.0" prefWidth="485.0" spacing="145.0">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="LA CARTE" />
                   <VBox prefHeight="200.0" prefWidth="100.0" spacing="6.0">
@@ -30,6 +31,7 @@
                         <Insets />
                      </HBox.margin>
                   </VBox>
+                  <Button fx:id="openFormAddDish" mnemonicParsing="false" text="ajouter un plat" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="41.0" prefWidth="600.0">
