@@ -335,17 +335,22 @@ public class DishesController implements Initializable, FactoryInterface {
             if (rowIndex != 0) {
                 columnIndex = GridPane.getColumnIndex(source) + 7 * rowIndex;
             }
-
-            dishList = attend.stream().map(n -> (Dish) n).filter((Dish n) -> n.getCategory().equals(category)).collect(Collectors.toList());
-            Dish item = (Dish) dishList.toArray()[columnIndex];
-            // WE GOT THE ITEM ON CLICK ON LIST RENDERED ON CARTE
-            DishHolder holder = DishHolder.getInstance(); // INSTANCE OF DISH MORE INFO
-            holder.setDish(item); // CHANGE ITEM CHOOSEN
             if (isAllDishes) {
+                dishList = attend.stream().map(n -> (Dish) n).filter((Dish n) -> n.getCategory().equals(category)).collect(Collectors.toList());
+                Dish item = (Dish) dishList.toArray()[columnIndex];
+                // WE GOT THE ITEM ON CLICK ON LIST RENDERED ON CARTE
+                DishHolder holder = DishHolder.getInstance(); // INSTANCE OF DISH MORE INFO
+                holder.setDish(item); // CHANGE ITEM CHOOSEN
                 factoryController.openModal("views/formUpdateAdminDish.fxml", this);
             } else {
+                dishList = attend.stream().map(n -> (Dish) n).filter((Dish n) -> n.getCategory().equals(category)&& n.getQuantity() > 0).collect(Collectors.toList());
+                Dish item = (Dish) dishList.toArray()[columnIndex];
+                // WE GOT THE ITEM ON CLICK ON LIST RENDERED ON CARTE
+                DishHolder holder = DishHolder.getInstance(); // INSTANCE OF DISH MORE INFO
+                holder.setDish(item); // CHANGE ITEM CHOOSEN
                 factoryController.openModal("views/moreDishInfos.fxml", this);
             }
+
         });
     }
 
