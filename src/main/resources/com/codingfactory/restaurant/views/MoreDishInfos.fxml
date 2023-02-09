@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.codingfactory.restaurant.controllers.MoreDishInfosController">
+   <children>
+      <VBox fx:id="vboxContainer" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+         <children>
+            <Text fx:id="category" strokeType="OUTSIDE" strokeWidth="0.0">
+               <VBox.margin>
+                  <Insets bottom="30.0" />
+               </VBox.margin>
+            </Text>
+            <Text fx:id="nameDish" strokeType="OUTSIDE" strokeWidth="0.0" />
+            <Text fx:id="description" strokeType="OUTSIDE" strokeWidth="0.0" />
+            <Text fx:id="price" strokeType="OUTSIDE" strokeWidth="0.0" />
+            <ImageView fx:id="img" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </VBox>
+   </children>
+</StackPane>

@@ -3,6 +3,7 @@ package com.codingfactory.restaurant.controllers;
 import com.codingfactory.restaurant.MongoConnection;
 import com.codingfactory.restaurant.interfaces.FactoryInterface;
 import com.codingfactory.restaurant.models.Dish;
+import com.codingfactory.restaurant.singletons.DishHolder;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import javafx.collections.FXCollections;
@@ -13,7 +14,6 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ToggleButton;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -29,6 +29,16 @@ import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 public class DishesController implements Initializable, FactoryInterface {
+    private Dish dish;
+
+    public Dish getDish() {
+        return dish;
+    }
+
+    public void setDish(Dish dish) {
+        this.dish = dish;
+    }
+
     public List<Dish> attend = new ArrayList<Dish>();
     public ObservableList<Dish> list;
     private String name;
@@ -137,6 +147,7 @@ public class DishesController implements Initializable, FactoryInterface {
         grid.setGridLinesVisible(true);
         containerAddGrid.getChildren().add(grid);
         index = 0;
+        indexRow = 0;
 
         Collection<Dish> dishListEntries;
         if (isAllDishes) {
@@ -158,8 +169,8 @@ public class DishesController implements Initializable, FactoryInterface {
                 vBox.getChildren().add(new Text(n.getName()));
                 vBox.getChildren().add(new Text(n.getDescription()));
                 vBox.getChildren().add(new Text(String.valueOf(n.getPrice())));
-                vBox.getChildren().add(new Text(n.getUrl())); // TODO CHANGE TO IMG
-                vBox.getChildren().add(new Text(n.getCategory()));
+//                vBox.getChildren().add(new Text(n.getUrl())); // TODO CHANGE TO IMG
+//                vBox.getChildren().add(new Text(n.getCategory()));
                 vBox.getChildren().add(new Text(String.valueOf(n.getCost())));
                 vBox.getChildren().add(new Text(String.valueOf(n.getQuantity())));
                 index ++;
@@ -174,8 +185,8 @@ public class DishesController implements Initializable, FactoryInterface {
                 vBox.getChildren().add(new Text(n.getName()));
                 vBox.getChildren().add(new Text(n.getDescription()));
                 vBox.getChildren().add(new Text(String.valueOf(n.getPrice())));
-                vBox.getChildren().add(new Text(n.getUrl())); // TODO CHANGE TO IMG
-                vBox.getChildren().add(new Text(n.getCategory()));
+//                vBox.getChildren().add(new Text(n.getUrl())); // TODO CHANGE TO IMG
+//                vBox.getChildren().add(new Text(n.getCategory()));
                 vBox.getChildren().add(new Text(String.valueOf(n.getCost())));
                 vBox.getChildren().add(new Text(String.valueOf(n.getQuantity())));
                 index++;
@@ -197,6 +208,7 @@ public class DishesController implements Initializable, FactoryInterface {
         containerAddGrid.getChildren().add(vBox);
         vBox.getChildren().add(grid);
         index = 0;
+        indexRow = 0;
 
 
         Collection<Dish> dishListMain;
@@ -219,8 +231,8 @@ public class DishesController implements Initializable, FactoryInterface {
                 vBox.getChildren().add(new Text(n.getName()));
                 vBox.getChildren().add(new Text(n.getDescription()));
                 vBox.getChildren().add(new Text(String.valueOf(n.getPrice())));
-                vBox.getChildren().add(new Text(n.getUrl())); // TODO CHANGE TO IMG
-                vBox.getChildren().add(new Text(n.getCategory()));
+//                vBox.getChildren().add(new Text(n.getUrl())); // TODO CHANGE TO IMG
+//                vBox.getChildren().add(new Text(n.getCategory()));
                 vBox.getChildren().add(new Text(String.valueOf(n.getCost())));
                 vBox.getChildren().add(new Text(String.valueOf(n.getQuantity())));
                 index ++;
@@ -235,8 +247,8 @@ public class DishesController implements Initializable, FactoryInterface {
                 vBox.getChildren().add(new Text(n.getName()));
                 vBox.getChildren().add(new Text(n.getDescription()));
                 vBox.getChildren().add(new Text(String.valueOf(n.getPrice())));
-                vBox.getChildren().add(new Text(n.getUrl())); // TODO CHANGE TO IMG
-                vBox.getChildren().add(new Text(n.getCategory()));
+//                vBox.getChildren().add(new Text(n.getUrl())); // TODO CHANGE TO IMG
+//                vBox.getChildren().add(new Text(n.getCategory()));
                 vBox.getChildren().add(new Text(String.valueOf(n.getCost())));
                 vBox.getChildren().add(new Text(String.valueOf(n.getQuantity())));
                 index++;
@@ -260,6 +272,7 @@ public class DishesController implements Initializable, FactoryInterface {
         containerAddGrid.getChildren().add(vBox);
         vBox.getChildren().add(grid);
         index = 0;
+        indexRow = 0;
 
 
         Collection<Dish> dishListMain;
@@ -283,8 +296,8 @@ public class DishesController implements Initializable, FactoryInterface {
                 vBox.getChildren().add(new Text(n.getName()));
                 vBox.getChildren().add(new Text(n.getDescription()));
                 vBox.getChildren().add(new Text(String.valueOf(n.getPrice())));
-                vBox.getChildren().add(new Text(n.getUrl())); // TODO CHANGE TO IMG
-                vBox.getChildren().add(new Text(n.getCategory()));
+//                vBox.getChildren().add(new Text(n.getUrl())); // TODO CHANGE TO IMG
+//                vBox.getChildren().add(new Text(n.getCategory()));
                 vBox.getChildren().add(new Text(String.valueOf(n.getCost())));
                 vBox.getChildren().add(new Text(String.valueOf(n.getQuantity())));
                 index ++;
@@ -299,8 +312,8 @@ public class DishesController implements Initializable, FactoryInterface {
                 vBox.getChildren().add(new Text(n.getName()));
                 vBox.getChildren().add(new Text(n.getDescription()));
                 vBox.getChildren().add(new Text(String.valueOf(n.getPrice())));
-                vBox.getChildren().add(new Text(n.getUrl())); // TODO CHANGE TO IMG
-                vBox.getChildren().add(new Text(n.getCategory()));
+//                vBox.getChildren().add(new Text(n.getUrl())); // TODO CHANGE TO IMG
+//                vBox.getChildren().add(new Text(n.getCategory()));
                 vBox.getChildren().add(new Text(String.valueOf(n.getCost())));
                 vBox.getChildren().add(new Text(String.valueOf(n.getQuantity())));
                 index++;
@@ -323,8 +336,10 @@ public class DishesController implements Initializable, FactoryInterface {
             dishList = attend.stream().map(n -> (Dish) n).filter((Dish n) -> n.getCategory().equals(category)).collect(Collectors.toList());
             Dish item = (Dish) dishList.toArray()[columnIndex];
             // WE GOT THE ITEM ON CLICK ON LIST RENDERED ON CARTE
-            System.out.println(item.getName());
+            DishHolder holder = DishHolder.getInstance(); // INSTANCE OF DISH MORE INFO
+            holder.setDish(item); // CHANGE ITEM CHOOSEN
 
+            factoryController.openModal("views/moreDishInfos.fxml", this);
         });
     }
 
