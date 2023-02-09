@@ -46,7 +46,7 @@ public class EmployeeControllerForm implements Initializable, ControllerInterfac
             return;
         }
 
-        Employee employee = new Employee(name, job, "CURRENT");
+        Employee employee = new Employee(name, job, 0, "CURRENT");
         employeeController.createNewEmployee(employee);
         employeeController.closeNewEmployeeModal();
     }
