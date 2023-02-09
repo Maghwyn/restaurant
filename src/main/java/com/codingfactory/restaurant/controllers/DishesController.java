@@ -20,6 +20,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import org.bson.Document;
+import org.bson.types.ObjectId;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -42,6 +43,7 @@ public class DishesController implements Initializable, FactoryInterface {
     public List<Dish> attend = new ArrayList<Dish>();
     public ObservableList<Dish> list;
     private String name;
+    private ObjectId id;
     private String description;
     private int price;
     private String url;
@@ -125,6 +127,7 @@ public class DishesController implements Initializable, FactoryInterface {
         try {
             for (int i = 0; i < coll.count(); i++) {
                 Document doc = cursor.next();
+                id = doc.getObjectId("_id");
                 name = doc.getString("name");
                 description = doc.getString("description");
                 price = doc.getInteger("price");
@@ -133,7 +136,7 @@ public class DishesController implements Initializable, FactoryInterface {
                 category = doc.getString("category");
                 quantity = doc.getInteger("quantity");
 
-                attend.add(new Dish(name, description, price, url, cost, category, quantity));
+                attend.add(new Dish(id, name, description, price, url, cost, category, quantity));
             }
             list = FXCollections.observableArrayList(attend);
             return list;
@@ -338,8 +341,11 @@ public class DishesController implements Initializable, FactoryInterface {
             // WE GOT THE ITEM ON CLICK ON LIST RENDERED ON CARTE
             DishHolder holder = DishHolder.getInstance(); // INSTANCE OF DISH MORE INFO
             holder.setDish(item); // CHANGE ITEM CHOOSEN
-
-            factoryController.openModal("views/moreDishInfos.fxml", this);
+            if (isAllDishes) {
+                factoryController.openModal("views/formUpdateAdminDish.fxml", this);
+            } else {
+                factoryController.openModal("views/moreDishInfos.fxml", this);
+            }
         });
     }
 
