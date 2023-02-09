@@ -1,11 +1,7 @@
 package com.codingfactory.restaurant.controllers;
 
 import com.codingfactory.restaurant.MongoConnection;
-import com.codingfactory.restaurant.models.Dish;
 import com.mongodb.client.MongoCollection;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
