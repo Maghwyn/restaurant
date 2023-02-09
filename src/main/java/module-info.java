@@ -8,6 +8,10 @@ module com.codingfactory.restaurant {
     requires org.apache.commons.lang3;
     requires mongo.java.driver;
     requires java.dotenv;
+    requires freemarker;
+    requires org.jsoup;
+    requires openhtmltopdf.core;
+    requires openhtmltopdf.pdfbox;
 
     opens com.codingfactory.restaurant to javafx.fxml;
     opens com.codingfactory.restaurant.controllers to javafx.fxml;
