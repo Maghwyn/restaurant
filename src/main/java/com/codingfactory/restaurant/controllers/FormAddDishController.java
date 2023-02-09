@@ -7,6 +7,7 @@ import com.mongodb.client.MongoCollection;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.text.Text;
@@ -29,7 +30,7 @@ public class FormAddDishController implements Initializable, ControllerInterface
     @FXML
     private TextField dishCostPrice;
     @FXML
-    private TextField dishCategory;
+    private ChoiceBox dishCategory;
     @FXML
     private TextField dishQuantity;
 
@@ -42,8 +43,9 @@ public class FormAddDishController implements Initializable, ControllerInterface
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        dishCategory.getItems().addAll("entrées", "plats", "desserts");
         addDish.setOnMouseClicked(event -> {
-            if (dishName.getText().equals("") || dishDescription.getText().equals("") || dishPrice.getText().equals("") || dishUrl.getText().equals("") || dishCostPrice.getText().equals("") || dishCategory.getText().equals("") || dishQuantity.getText().equals("")) {
+            if (dishName.getText().equals("") || dishDescription.getText().equals("") || dishPrice.getText().equals("") || dishUrl.getText().equals("") || dishCostPrice.getText().equals("") || dishQuantity.getText().equals("") || dishCategory.getValue().equals(null)) {
                 errorMessage.setText("Veuillez remplir tous les champs.");
             } else {
                 MongoCollection coll = MongoConnection.getDatabase().getCollection("dish");
@@ -54,7 +56,7 @@ public class FormAddDishController implements Initializable, ControllerInterface
                         .append("price", parseInt(dishPrice.getText()))
                         .append("url", dishUrl.getText())
                         .append("cost", parseInt(dishCostPrice.getText()))
-                        .append("category", dishCategory.getText())
+                        .append("category", dishCategory.getValue())
                         .append("quantity", parseInt(dishQuantity.getText()));
                 coll.insertOne(doc);
                 errorMessage.setText("Votre plat a bien été ajouté !");
