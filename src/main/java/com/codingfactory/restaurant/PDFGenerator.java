@@ -91,6 +91,7 @@ public class PDFGenerator {
 
         Template template = loadTemplate();
         Document document = fillTemplateData(template, file.getDateNow(), file.getTimeNow(), reports);
+        if(document == null) return false;
         Boolean res = buildPDF(document, file.getPathOutput());
         return res;
     }
