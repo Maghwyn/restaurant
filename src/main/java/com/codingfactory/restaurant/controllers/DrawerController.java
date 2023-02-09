@@ -7,6 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -27,6 +28,9 @@ enum State {
 public class DrawerController implements Initializable, FactoryInterface {
     @FXML
     private GridPane drawer;
+
+    @FXML
+    private StackPane drawerContainer;
 
     @FXML
     private Button drawerToggle;
@@ -78,12 +82,14 @@ public class DrawerController implements Initializable, FactoryInterface {
         if(state.equals(State.OPEN)) {
             toggle.getProperties().put("state", State.CLOSED);
             drawer.setMaxWidth(75);
+            drawerContainer.setMaxWidth(75);
             return;
         }
 
         if(state.equals(State.CLOSED)) {
             toggle.getProperties().put("state", State.OPEN);
-            drawer.setMaxWidth(1.7976931348623157E308);
+            drawer.setMaxWidth(250);
+            drawerContainer.setMaxWidth(250);
         }
     }
 
@@ -107,7 +113,7 @@ public class DrawerController implements Initializable, FactoryInterface {
         }
 
         if(target.equals(Target.EMPLOYEES)) {
-            factoryController.setIncludedFXML("views/page4.fxml");
+            factoryController.setIncludedFXML("views/employees.fxml");
             return;
         }
 
