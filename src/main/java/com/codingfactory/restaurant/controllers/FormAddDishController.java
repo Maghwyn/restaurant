@@ -1,6 +1,8 @@
 package com.codingfactory.restaurant.controllers;
 
 import com.codingfactory.restaurant.MongoConnection;
+import com.codingfactory.restaurant.interfaces.ControllerInterface;
+import com.codingfactory.restaurant.interfaces.FactoryInterface;
 import com.mongodb.client.MongoCollection;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -15,7 +17,7 @@ import java.util.ResourceBundle;
 
 import static java.lang.Integer.parseInt;
 
-public class FormAddDishController implements Initializable {
+public class FormAddDishController implements Initializable, ControllerInterface<DishesController> {
     @FXML
     private TextField dishName;
     @FXML
@@ -36,11 +38,11 @@ public class FormAddDishController implements Initializable {
     @FXML
     private Text errorMessage;
 
-
+    private DishesController dishesController;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        addDish.setOnAction(event -> {
+        addDish.setOnMouseClicked(event -> {
             if (dishName.getText().equals("") || dishDescription.getText().equals("") || dishPrice.getText().equals("") || dishUrl.getText().equals("") || dishCostPrice.getText().equals("") || dishCategory.getText().equals("") || dishQuantity.getText().equals("")) {
                 errorMessage.setText("Veuillez remplir tous les champs.");
             } else {
@@ -56,7 +58,14 @@ public class FormAddDishController implements Initializable {
                         .append("quantity", parseInt(dishQuantity.getText()));
                 coll.insertOne(doc);
                 errorMessage.setText("Votre plat a bien été ajouté !");
+                dishesController.majOnAddDish();
+                dishesController.closeFormAddDish();
             }
         });
+    }
+
+    @Override
+    public void setParentController(DishesController controller) {
+        this.dishesController = controller;
     }
 }
