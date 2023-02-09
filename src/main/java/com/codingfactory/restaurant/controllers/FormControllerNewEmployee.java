@@ -12,7 +12,7 @@ import javafx.scene.text.Text;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class EmployeeControllerForm implements Initializable, ControllerInterface<EmployeeController> {
+public class FormControllerNewEmployee implements Initializable, ControllerInterface<EmployeeController> {
     @FXML
     private TextField employeeName;
 
@@ -43,11 +43,12 @@ public class EmployeeControllerForm implements Initializable, ControllerInterfac
 
         if(name.isEmpty() || job.isEmpty()) {
             errorMessage.setText("All fields are required");
+            errorMessage.setVisible(true);
             return;
         }
 
-        Employee employee = new Employee(name, job, 0, "CURRENT");
+        Employee employee = new Employee(null, name, job, 0, "CURRENT");
         employeeController.createNewEmployee(employee);
-        employeeController.closeNewEmployeeModal();
+        employeeController.closeModal();
     }
 }

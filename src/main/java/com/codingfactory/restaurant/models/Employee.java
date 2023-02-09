@@ -6,12 +6,17 @@ public class Employee {
     private ObjectId id;
     private String name;
     private String job;
+
+    private Integer workedHours;
+
     private String status;
 
-    public Employee(String name, String job, String status) {
+    public Employee(ObjectId id, String name, String job, Integer workedHours, String status) {
+        this.id = id;
         this.name = name;
         this.job = job;
         this.status = status;
+        this.workedHours = workedHours;
     }
 
     public ObjectId getId() {
@@ -30,7 +35,14 @@ public class Employee {
         this.name = name;
     }
 
-    public String job() { return job; }
+    public String getJob() { return job; }
 
     public void setJob(String job) { this.job = job; }
+
+    public String getStatus() { return status; }
+
+    public void setStatus(String status) { this.status = status; }
+
+    public Integer getWorkedHours() { return workedHours; }
+    public void setWorkedHours(Integer workedHours) { this.workedHours = workedHours; }
 }
