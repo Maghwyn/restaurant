@@ -7,7 +7,8 @@ public class Dish {
     private ObjectId id;
     private String name;
 
-    public Dish(String name, String description, int price, String url, int cost, String category, int quantity) {
+    public Dish(ObjectId id, String name, String description, int price, String url, int cost, String category, int quantity) {
+        this.id = id;
         this.name = name;
         this.description = description;
         this.price = price;
