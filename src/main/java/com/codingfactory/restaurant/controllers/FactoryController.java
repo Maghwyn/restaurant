@@ -1,12 +1,14 @@
 package com.codingfactory.restaurant.controllers;
 
 import com.codingfactory.restaurant.App;
+import com.codingfactory.restaurant.interfaces.ControllerInterface;
 import com.codingfactory.restaurant.interfaces.FactoryInterface;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
@@ -50,6 +52,7 @@ public class FactoryController implements Initializable {
             }
 
             view.getChildren().clear();
+            view.setHgrow(root, Priority.ALWAYS);
             view.getChildren().add(root);
             pageController = controller;
         } catch (IOException e) {
@@ -68,14 +71,30 @@ public class FactoryController implements Initializable {
         }
     }
 
-    public void openModal(String fxmlFile) {
+    public <T> void openModal(String fxmlFile, T controller) {
         try {
             FXMLLoader viewLoader = new FXMLLoader(app.getClass().getResource(fxmlFile));
             Parent root = viewLoader.load();
+            ControllerInterface childController = viewLoader.getController();
+
+            Optional<Method> methodToFind = Arrays
+                    .stream(childController.getClass().getMethods())
+                    .filter(method -> "setParentController".equals(method.getName()))
+                    .findFirst();
+
+            System.out.println(methodToFind.isPresent());
+            if(methodToFind.isPresent()) {
+                childController.setParentController(controller);
+            }
+
             modalController.openModal(root);
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void forceCloseModal() {
+        modalController.forceClose();
     }
 
     @Override
