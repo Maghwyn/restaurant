@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 
 
-<VBox fx:controller="com.codingfactory.restaurant.controllers.AlertControllerDeleteEmployee" alignment="TOP_CENTER" spacing="40.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:controller="com.codingfactory.restaurant.controllers.AlertControllerDeleteEmployee" alignment="TOP_CENTER" spacing="40.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label text="Est-ce que vous être de vouloir supprimer définitivement cet employé ?" />
       <CheckBox fx:id="warningCheckbox" mnemonicParsing="false" text="Oui. Cette action est irreversible !" />
