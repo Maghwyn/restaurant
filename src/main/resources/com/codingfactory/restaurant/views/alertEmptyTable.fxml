@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 
 
-<VBox fx:controller="com.codingfactory.restaurant.controllers.AlertControllerEmptyTable" alignment="TOP_CENTER" spacing="40.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:controller="com.codingfactory.restaurant.controllers.AlertControllerEmptyTable" alignment="TOP_CENTER" spacing="40.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <Label text="Est-ce que vous êtes certain de vouloir libérer cette table ?" />
         <HBox alignment="CENTER" spacing="50.0">
