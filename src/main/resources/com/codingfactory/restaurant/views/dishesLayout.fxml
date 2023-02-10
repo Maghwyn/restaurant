@@ -16,7 +16,7 @@
                <children>
                   <HBox alignment="CENTER">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="plats du restaurant : " />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Plats du restaurant : " />
                         <ToggleButton fx:id="seeAllDishes" mnemonicParsing="false" prefHeight="26.0" prefWidth="7.0" text="ToggleButton" textOverrun="CENTER_ELLIPSIS" />
                      </children>
                      <VBox.margin>
@@ -28,7 +28,7 @@
                   <Insets />
                </HBox.margin>
             </VBox>
-            <Button fx:id="openFormAddDish" mnemonicParsing="false" text="ajouter un plat" />
+            <Button fx:id="openFormAddDish" mnemonicParsing="false" text="Ajouter un plat" />
          </children>
       </HBox>
       <HBox alignment="CENTER">

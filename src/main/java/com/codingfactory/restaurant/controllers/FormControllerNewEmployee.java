@@ -42,7 +42,7 @@ public class FormControllerNewEmployee implements Initializable, ControllerInter
         String job = employeeJob.getText();
 
         if(name.isEmpty() || job.isEmpty()) {
-            errorMessage.setText("All fields are required");
+            errorMessage.setText("Tous les champs sont requis");
             errorMessage.setVisible(true);
             return;
         }
