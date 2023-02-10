@@ -35,7 +35,7 @@ public class FactoryController implements Initializable {
 
     private App app;
 
-    public boolean canTakeOrder;
+    public boolean canTakeOrder = true;
 
     public void setApp(App app) {
         this.app = app;
