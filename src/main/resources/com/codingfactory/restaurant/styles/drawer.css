@@ -1,13 +1,17 @@
 #drawer {
-    -fx-background-color: gray;
+    -fx-background-color: linear-gradient(to top, #7d8e9c 11.38%, #64727d 25.23%, #4e5961 100%);
 }
 
 .drawerOption {
     -fx-cursor: hand;
 }
 
+Label {
+    -fx-text-fill: #e2e2e2;
+}
+
 .drawerOption:hover {
-    -fx-background-color: green;
+    -fx-background-color: #92a6b5;
     -fx-text-fill: white;
 }
 

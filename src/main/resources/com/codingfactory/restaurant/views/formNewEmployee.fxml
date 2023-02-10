@@ -8,31 +8,31 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox fx:controller="com.codingfactory.restaurant.controllers.FormControllerNewEmployee" alignment="TOP_CENTER" prefWidth="300.0" spacing="20.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<VBox alignment="TOP_CENTER" prefWidth="300.0" spacing="20.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.codingfactory.restaurant.controllers.FormControllerNewEmployee">
    <children>
-      <Label text="Create a new employee" VBox.vgrow="ALWAYS">
+      <Label text="Créer un nouvel employé" VBox.vgrow="ALWAYS">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
       <VBox>
          <children>
-            <Label text="Name" />
-            <TextField fx:id="employeeName"/>
+            <Label text="Nom/Prénom" />
+            <TextField fx:id="employeeName" />
          </children>
       </VBox>
       <VBox>
          <children>
-            <Label text="Job" />
-            <TextField fx:id="employeeJob"/>
+            <Label text="Métier" />
+            <TextField fx:id="employeeJob" />
          </children>
       </VBox>
       <VBox alignment="CENTER">
          <children>
-            <Text fx:id="errorMessage" visible="false" strokeType="OUTSIDE" strokeWidth="0.0" />
+            <Text fx:id="errorMessage" strokeType="OUTSIDE" strokeWidth="0.0" visible="false" />
          </children>
       </VBox>
-      <Button fx:id="createEmployeeButton" mnemonicParsing="false" text="Create" />
+      <Button fx:id="createEmployeeButton" mnemonicParsing="false" text="Créer" />
    </children>
    <padding>
       <Insets bottom="30.0" left="20.0" right="20.0" top="30.0" />
