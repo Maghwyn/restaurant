@@ -10,12 +10,12 @@
 
 <VBox fx:controller="com.codingfactory.restaurant.controllers.AlertControllerDeleteEmployee" alignment="TOP_CENTER" spacing="40.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label text="Are you sure you want to delete your old employee from the database ?" />
-      <CheckBox fx:id="warningCheckbox" mnemonicParsing="false" text="Yes. This action is irreversible !" />
+      <Label text="Est-ce que vous être de vouloir supprimer définitivement cet employé ?" />
+      <CheckBox fx:id="warningCheckbox" mnemonicParsing="false" text="Oui. Cette action est irreversible !" />
       <HBox alignment="CENTER" spacing="50.0">
          <children>
-            <Button fx:id="cancel" defaultButton="true" mnemonicParsing="false" text="No, cancel" />
-            <Button fx:id="delete" disable="true" mnemonicParsing="false" text="Confirm" />
+            <Button fx:id="cancel" defaultButton="true" mnemonicParsing="false" text="Non, annuler" />
+            <Button fx:id="delete" disable="true" mnemonicParsing="false" text="Oui, je confirme" />
          </children>
       </HBox>
    </children>

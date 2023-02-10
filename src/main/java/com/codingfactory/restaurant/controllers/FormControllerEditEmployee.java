@@ -76,7 +76,7 @@ public class FormControllerEditEmployee implements Initializable, ControllerInte
         String strWorkedHours = employeeWorkedHours.getText();
 
         if(name.isEmpty() || job.isEmpty() || strWorkedHours.isEmpty()) {
-            errorMessage.setText("All fields are required");
+            errorMessage.setText("Tous les champs sont requis");
             errorMessage.setVisible(true);
             return;
         }

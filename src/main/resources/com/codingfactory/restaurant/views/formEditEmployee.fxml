@@ -12,40 +12,40 @@
 
 <VBox alignment="TOP_CENTER" prefWidth="300.0" spacing="20.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.codingfactory.restaurant.controllers.FormControllerEditEmployee">
     <children>
-        <Label text="Edit an active employee" VBox.vgrow="ALWAYS">
+        <Label text="Editer un employé" VBox.vgrow="ALWAYS">
             <font>
                 <Font size="16.0" />
             </font>
         </Label>
         <VBox>
             <children>
-                <Label text="Name" />
+                <Label text="Nom/Prénom" />
                 <TextField fx:id="employeeName" />
             </children>
         </VBox>
         <VBox>
             <children>
-                <Label text="Job" />
+                <Label text="Métier" />
                 <TextField fx:id="employeeJob" />
             </children>
         </VBox>
         <VBox>
             <children>
-                <Label text="Worked Hours" />
+                <Label text="Heures travaillées" />
                 <TextField fx:id="employeeWorkedHours" />
             </children>
         </VBox>
         <VBox alignment="CENTER">
             <children>
-                <Text fx:id="errorMessage" visible="false" strokeType="OUTSIDE" strokeWidth="0.0" />
+                <Text fx:id="errorMessage" strokeType="OUTSIDE" strokeWidth="0.0" visible="false" />
             </children>
         </VBox>
-        <Button fx:id="editEmployeeButton" mnemonicParsing="false" text="Edit" />
+        <Button fx:id="editEmployeeButton" mnemonicParsing="false" text="Editer" />
       <Separator prefWidth="200.0" />
       <VBox alignment="CENTER" spacing="20.0">
          <children>
-            <CheckBox fx:id="warningCheckbox" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" text="I want to fire an employee" />
-            <Button fx:id="fireEmployeeButton" alignment="TOP_CENTER" disable="true" mnemonicParsing="false" text="Confirm" />
+            <CheckBox fx:id="warningCheckbox" alignment="CENTER" contentDisplay="TOP" mnemonicParsing="false" text="Je veux renvoyer un employé" />
+            <Button fx:id="fireEmployeeButton" alignment="TOP_CENTER" disable="true" mnemonicParsing="false" text="Confimer" />
          </children>
       </VBox>
     </children>

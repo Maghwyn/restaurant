@@ -43,7 +43,7 @@ public class FormControllerNewTable implements Initializable, ControllerInterfac
         String strNbrChair = tableChair.getText();
 
         if(strZone.isEmpty() || strNbrChair.isEmpty()) {
-            errorMessage.setText("All fields are required");
+            errorMessage.setText("Tous les champs sont requis");
             errorMessage.setVisible(true);
             return;
         }

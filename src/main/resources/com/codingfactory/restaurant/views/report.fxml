@@ -10,7 +10,7 @@
    <children>
       <VBox alignment="CENTER" spacing="30.0">
          <children>
-            <Label text="Vos rapports financier seront disponibles sur &quot;/Desktop/el-ristorante-reports&quot;">
+            <Label text="Vos rapports financiers seront disponibles sur &quot;/Desktop/el-ristorante-reports&quot;">
                <font>
                   <Font size="15.0" />
                </font>
