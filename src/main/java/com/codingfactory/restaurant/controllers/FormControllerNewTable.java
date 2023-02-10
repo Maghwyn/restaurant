@@ -41,7 +41,7 @@ public class FormControllerNewTable implements Initializable, ControllerInterfac
         createTableBtn.setOnMouseClicked(this::createNewTable);
 
         ObservableList<String> jobsList = FXCollections.observableArrayList();
-        jobsList.add("En terrace");
+        jobsList.add("En terrasse");
         jobsList.add("A l'entrée");
         jobsList.add("En arrière salle");
 
