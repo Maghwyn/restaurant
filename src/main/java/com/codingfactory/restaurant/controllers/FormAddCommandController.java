@@ -2,14 +2,10 @@ package com.codingfactory.restaurant.controllers;
 
 import com.codingfactory.restaurant.MongoConnection;
 import com.codingfactory.restaurant.interfaces.ControllerInterface;
-import com.codingfactory.restaurant.interfaces.FactoryInterface;
 import com.codingfactory.restaurant.models.Command;
 import com.codingfactory.restaurant.models.Dish;
-import com.codingfactory.restaurant.models.Table;
-import com.mongodb.MongoException;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
-import com.mongodb.client.model.Updates;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -19,12 +15,10 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import org.bson.Document;
-import org.bson.conversions.Bson;
 import org.bson.types.ObjectId;
 
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
@@ -94,22 +88,27 @@ public class FormAddCommandController implements Initializable, ControllerInterf
     public void updateCommand(MouseEvent e) {
         Command currentCommand = commandController.currentCommand;
 //        int totalPrice = listDishesToDb.stream().map(n -> n.getPrice()).reduce((integer, integer2);
-        System.out.println(statusChoice.getValue());
+
         MongoCollection coll = MongoConnection.getDatabase().getCollection("commands");
-        Document query = new Document().append("_id", currentCommand.getId());
-        Bson updates = Updates.combine(
-                Updates.set("status", currentCommand.getStatus()),
-                Updates.set("dishes", listDishesToDb),
-                Updates.set("total", 20)
-        );
-        try {
-            coll.updateOne(query, updates);
-//            dishesController.majOnAddDish();
-//            dishesController.closeFormAddDish();
-        } catch (MongoException me) {
-            System.err.println("Unable to update due to an error: " + me);
+        currentCommand.setStatus((String) statusChoice.getValue());
+        currentCommand.setTotal(20);
+
+        List<Document> dishes = new ArrayList<>();
+        for (Dish dish : listDishesToDb) {
+            dishes.add(new Document("name", dish.getName())
+                    .append("description", dish.getDescription())
+                    .append("price", dish.getPrice())
+                    .append("url", dish.getUrl())
+                    .append("cost", dish.getCost())
+                    .append("category", dish.getCategory())
+                    .append("quantity", dish.getQuantity()));
         }
 
+        Document doc = new Document("dishes", dishes)
+                .append("status", currentCommand.getStatus())
+                .append("total", 20);
+
+        coll.updateOne(new Document("_id", currentCommand.getId()), new Document("$set", doc));
     }
 
     public void addFields() {

@@ -71,7 +71,7 @@ public class CommandsController implements Initializable, FactoryInterface {
                 id = doc.getObjectId("_id");
                 tableId = doc.getString("tableId");
                 status = doc.getString("status");
-                dishesListDb = doc.getList("dishes", Dish.class);
+                dishesListDb = (List<Dish>) doc.get("dishes");
                 total = doc.getInteger("total");
                 createdAt = doc.getDate("createdAt");
 
@@ -87,8 +87,6 @@ public class CommandsController implements Initializable, FactoryInterface {
     public void setAllCommands() {
         commandsTableView.setItems(list);
     }
-
-
 
     @Override
     public void setFactoryController(FactoryController controller) {
