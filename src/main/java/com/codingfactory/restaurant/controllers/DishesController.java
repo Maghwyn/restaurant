@@ -8,12 +8,14 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -90,22 +92,36 @@ public class DishesController implements Initializable, FactoryInterface {
                 factoryController.openModal("views/formAddDish.fxml", this);
             });
         }
-        seeAllDishes.setOnAction(e -> {
+        /**
+         * Toggle switch to see all dishes or see dishes not out of stock
+         * @params e {@link ActionEvent}
+         */
+        seeAllDishes.setOnAction((ActionEvent e) -> {
             isAllDishes = !isAllDishes;
             containerAddGrid.getChildren().clear();
             renderDishes();
         });
 
-        openFormAddDish.setOnMouseClicked(e -> {
+        /**
+         * Open modal to create a dish in DB
+         * @params e {@link MouseEvent}
+         */
+        openFormAddDish.setOnMouseClicked((MouseEvent e) -> {
             factoryController.openModal("views/formAddDish.fxml", this);
         });
 
     }
 
+    /**
+     * Method to close modal when dish is added in DB
+     */
     public void closeFormAddDish() {
         factoryController.forceCloseModal();
     }
 
+    /**
+     * Method to update rendering items on the layout
+     */
     public void majOnAddDish() {
         attend.clear();
         list.clear();
@@ -114,12 +130,20 @@ public class DishesController implements Initializable, FactoryInterface {
         renderDishes();
     }
 
+    /**
+     * Method to render all dishes filtered by categories
+     */
     public void renderDishes () {
         getDishesEntries();
         getDishesMain();
         getDishesDeserts();
 
     }
+
+    /**
+     * Method to fetch all the dish presents in the DB
+     * @return list of all dishes from DB
+     */
     public ObservableList getAllDishes() {
         int pos;
         MongoCollection coll = MongoConnection.getDatabase().getCollection("dish");
@@ -145,6 +169,9 @@ public class DishesController implements Initializable, FactoryInterface {
         }
     }
 
+    /**
+     * Method to implement layout with a filter of the category of dishes (entries)
+     */
     public void getDishesEntries() {
         grid = new GridPane();
         grid.setGridLinesVisible(true);
@@ -197,6 +224,9 @@ public class DishesController implements Initializable, FactoryInterface {
             }
         });
     }
+    /**
+     * Method to implement layout with a filter of the category of dishes (main)
+     */
     public void getDishesMain() {
         grid = new GridPane();
         vBox = new VBox();
@@ -260,6 +290,9 @@ public class DishesController implements Initializable, FactoryInterface {
 
         });
     }
+    /**
+     * Method to implement layout with a filter of the category of dishes (deserts)
+     */
     public void getDishesDeserts() {
         grid = new GridPane();
         vBox = new VBox();
@@ -325,6 +358,12 @@ public class DishesController implements Initializable, FactoryInterface {
         });
 
     }
+
+    /**
+     * Method to get the selected item when user clicks on an item to display more infos on it
+     * @param vBoxClicked {@link VBox}
+     * @param category {@link String}
+     */
     public void getSelectedItem(VBox vBoxClicked, String category) {
         vBoxClicked.setOnMouseClicked(e -> {
             Collection<Dish> dishList;

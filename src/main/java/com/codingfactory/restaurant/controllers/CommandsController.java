@@ -45,6 +45,9 @@ public class CommandsController implements Initializable, FactoryInterface {
         getAllCommands();
         setAllCommands();
 
+        /**
+         * Implement row in the Table View
+         */
         commandsTableView.setRowFactory(tv -> {
             TableRow row = new TableRow();
             row.setOnMouseClicked(this::openCommandToEdit);
@@ -53,6 +56,10 @@ public class CommandsController implements Initializable, FactoryInterface {
 
     }
 
+    /**
+     * Method to get the row and open a modal to edit the command item
+     * @param e {@link MouseEvent}
+     */
     public void openCommandToEdit(MouseEvent e) {
         TableRow row = (TableRow) e.getSource();
         currentCommand = (Command) row.getItem();
@@ -61,6 +68,10 @@ public class CommandsController implements Initializable, FactoryInterface {
     }
 
 
+    /**
+     * Method to get all the commands from the DB
+     * @return list {@link List<Dish>}
+     */
     public ObservableList getAllCommands() {
         int pos;
         MongoCollection coll = MongoConnection.getDatabase().getCollection("commands");
@@ -84,6 +95,9 @@ public class CommandsController implements Initializable, FactoryInterface {
         }
     }
 
+    /**
+     * Method to set all commands to the Table View
+     */
     public void setAllCommands() {
         commandsTableView.setItems(list);
     }

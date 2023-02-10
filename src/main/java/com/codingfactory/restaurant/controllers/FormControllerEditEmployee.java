@@ -65,6 +65,9 @@ public class FormControllerEditEmployee implements Initializable, ControllerInte
         employeeJob.setItems(jobsList);
     }
 
+    /**
+     * Method to set values on fields from an employee
+     */
     private void fillFormData() {
         Employee editEmployee = employeeController.getCurrentEmployeeDetails();
         employeeName.setText(editEmployee.getName());
@@ -72,18 +75,30 @@ public class FormControllerEditEmployee implements Initializable, ControllerInte
         employeeWorkedHours.setText(editEmployee.getWorkedHours().toString());
     }
 
+    /**
+     * Method to toggle if we want to fire an employee
+     * @param e {@link MouseEvent}
+     */
     private void toggleFireButton(MouseEvent e) {
         if(warningCheckbox.isSelected()) {
             fireEmployeeButton.setDisable(false);
         } else fireEmployeeButton.setDisable(true);
     }
 
+    /**
+     * Method to fire an employee and put it in the Previous employee state
+     * @param e {@link MouseEvent}
+     */
     private void fireEmployee(MouseEvent e) {
         if(fireEmployeeButton.isDisable()) return;
         employeeController.getCurrentEmployeeDetails().setStatus("PREVIOUS");
         editEmployee(e);
     }
 
+    /**
+     * Method to update the employee we want to edit and check if fields are not empty
+     * @param e {@link MouseEvent}
+     */
     private void editEmployee(MouseEvent e) {
         String name = employeeName.getText();
         String job = (String) employeeJob.getValue();

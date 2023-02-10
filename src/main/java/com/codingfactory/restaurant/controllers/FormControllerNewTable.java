@@ -48,6 +48,10 @@ public class FormControllerNewTable implements Initializable, ControllerInterfac
         tableZone.setItems(jobsList);
     }
 
+    /**
+     * Method to create new table -> it checks if all fields are filled
+     * @param e {@link MouseEvent}
+     */
     private void createNewTable(MouseEvent e) {
         int zone = tableZone.getSelectionModel().getSelectedIndex();
         String strNbrChair = tableChair.getText();
