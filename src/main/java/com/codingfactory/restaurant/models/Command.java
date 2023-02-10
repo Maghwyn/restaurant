@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Command {
+    /**
+     * Model of command used for create command linked with a table created
+     */
     private ObjectId id;
     private Date createdAt;
 

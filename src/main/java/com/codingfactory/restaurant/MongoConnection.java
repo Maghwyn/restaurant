@@ -10,6 +10,9 @@ public class  MongoConnection{
 
     static {
         try {
+            /**
+             * Load the dotenv file to have secret variables
+             */
             Dotenv dotenv = Dotenv.configure().directory("./assets").load();
             String mongo_uri = dotenv.get("MONGODB_URI");
             String mongo_db_name = dotenv.get("MONGODB_DATABASE");
@@ -20,6 +23,9 @@ public class  MongoConnection{
 
             MongoClient mongoClient = new MongoClient(mongoClientUri) ;
 
+            /**
+             * Get the database we want to from mongoURI
+             */
             database = mongoClient.getDatabase(mongo_db_name);
             System.out.println("CONNECTED_TO_DB");
 
@@ -28,6 +34,10 @@ public class  MongoConnection{
         }
     }
 
+    /**
+     * Method to get the database instance and return it to let us use it
+     * @return
+     */
     public static MongoDatabase getDatabase() {
         return database;
     }

@@ -3,6 +3,10 @@ package com.codingfactory.restaurant.models;
 import org.bson.types.ObjectId;
 
 public class Employee {
+    /**
+     * Model Employee used to know employees of the restaurant and their job
+     * We can delete an employee to know fired employee of the restaurant
+     */
     private ObjectId id;
     private String name;
     private String job;
