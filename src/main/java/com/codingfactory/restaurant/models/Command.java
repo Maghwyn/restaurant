@@ -70,7 +70,4 @@ public class Command {
     private String status;
     private ArrayList dishes;
     private int total;
-
-
-
 }

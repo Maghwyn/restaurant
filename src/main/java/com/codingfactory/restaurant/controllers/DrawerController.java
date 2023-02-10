@@ -17,6 +17,7 @@ enum Target {
     TABLES,
     COMMANDS,
     EMPLOYEES,
+    STATS,
     REPORT,
 }
 
@@ -48,6 +49,9 @@ public class DrawerController implements Initializable, FactoryInterface {
     private HBox employees;
 
     @FXML
+    private HBox stats;
+
+    @FXML
     private HBox report;
 
     private FactoryController factoryController;
@@ -60,6 +64,7 @@ public class DrawerController implements Initializable, FactoryInterface {
         tables.getProperties().put("target", Target.TABLES);
         commands.getProperties().put("target", Target.COMMANDS);
         employees.getProperties().put("target", Target.EMPLOYEES);
+        stats.getProperties().put("target", Target.STATS);
         report.getProperties().put("target", Target.REPORT);
 
         drawerToggle.setOnMouseClicked(this::drawerAction);
@@ -67,6 +72,7 @@ public class DrawerController implements Initializable, FactoryInterface {
         tables.setOnMouseClicked(this::routerGoto);
         commands.setOnMouseClicked(this::routerGoto);
         employees.setOnMouseClicked(this::routerGoto);
+        stats.setOnMouseClicked(this::routerGoto);
         report.setOnMouseClicked(this::routerGoto);
     }
 
@@ -83,6 +89,7 @@ public class DrawerController implements Initializable, FactoryInterface {
             toggle.getProperties().put("state", State.CLOSED);
             drawer.setMaxWidth(75);
             drawerContainer.setMaxWidth(75);
+            drawerContainer.setMinWidth(75);
             return;
         }
 
@@ -90,6 +97,7 @@ public class DrawerController implements Initializable, FactoryInterface {
             toggle.getProperties().put("state", State.OPEN);
             drawer.setMaxWidth(250);
             drawerContainer.setMaxWidth(250);
+            drawerContainer.setMinWidth(250);
         }
     }
 
@@ -115,6 +123,10 @@ public class DrawerController implements Initializable, FactoryInterface {
         if(target.equals(Target.EMPLOYEES)) {
             factoryController.setIncludedFXML("views/employees.fxml");
             return;
+        }
+
+        if(target.equals(Target.STATS)) {
+            factoryController.setIncludedFXML("views/stats.fxml");
         }
 
         if(target.equals(Target.REPORT)) {
