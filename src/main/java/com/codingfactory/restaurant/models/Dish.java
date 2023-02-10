@@ -4,6 +4,11 @@ import com.mongodb.client.MongoCollection;
 import org.bson.types.ObjectId;
 
 public class Dish {
+    /**
+     * Model of Dish to display all the dish presents in restaurant
+     * Used for revenue + expenditure of the restaurant
+     * Used to in the commands we add dish
+     */
     private ObjectId id;
     private String name;
 

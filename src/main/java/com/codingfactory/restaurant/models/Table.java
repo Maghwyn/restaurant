@@ -3,6 +3,10 @@ package com.codingfactory.restaurant.models;
 import org.bson.types.ObjectId;
 
 public class Table {
+    /**
+     * Model used for the tables of the restaurant
+     * Link with the dish and the commands models
+     */
     private ObjectId id;
     private int zone;
     private String number;

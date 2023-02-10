@@ -48,11 +48,17 @@ public class MoreDishInfosController implements Initializable, ControllerInterfa
 
     }
 
+    /**
+     * Init singleTons instance of Dish to get the dish selected and active
+     */
     public void initInstance() {
         holder = DishHolder.getInstance();
         dishItem = holder.getDish();
     }
 
+    /**
+     * Add items values to filled all the fields we want to display for user
+     */
     public void displayItemInfos() {
         category.setText(dishItem.getCategory());
         nameDish.setText(dishItem.getName());

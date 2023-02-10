@@ -22,8 +22,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/**
+ * Class PDFGenerator provides a method to generate a PDF based on .ftl template.
+ * The data is filled into a template .ftl, parsed then converted into a W3C document xml, and finally rendered as a PDF.
+ */
 public class PDFGenerator {
 
+    /**
+     * Method loadTemplate load the .ftl template and returns a manipulable instance of it.
+     * @return Template | null
+     */
     private Template loadTemplate() {
         try {
             Configuration configuration = new Configuration(new Version(2, 3, 32));
@@ -37,6 +45,11 @@ public class PDFGenerator {
         }
     }
 
+    /**
+     * Method fillTemplateData read the .ftl template and inject the necessary data where defined.
+     * It then parse the html string to a Document, and convert it to an xml Document.
+     * @return Document | null
+     */
     private Document fillTemplateData(Template template, String dateNow, String timeNow, List<Report> reports) {
         try (Writer writer = new StringWriter()) {
             Map<String, Object> data = new HashMap<>();
@@ -71,6 +84,10 @@ public class PDFGenerator {
         }
     }
 
+    /**
+     * Method buildPDF read the xml Document, render the PDF and output it in a Desktop Dir.
+     * @return boolean The result, if it failed or succeeded.
+     */
     private Boolean buildPDF(Document document, String pathOutput) {
         try (OutputStream outputStream = new FileOutputStream(pathOutput)) {
             PdfRendererBuilder builder = new PdfRendererBuilder();
@@ -85,6 +102,13 @@ public class PDFGenerator {
         }
     }
 
+    /**
+     * Method build is the core generator of the PDFGenerator Class.
+     * It generates the output file path, load the pdf Document. Inject and parse.
+     * Retrieve the xml Document and build the xml Document into a redable PDF.
+     * @param reports The 3 latest report model.
+     * @return boolean
+     */
     public Boolean build(List<Report> reports) {
         PDFGeneratorFilePath file = new PDFGeneratorFilePath();
         file.generatePath();
@@ -96,6 +120,10 @@ public class PDFGenerator {
         return res;
     }
 
+    /**
+     * Private Class PDFGeneratorFilePath has the sole purpose
+     * of generating the output pathname and filename.
+     */
     private static class PDFGeneratorFilePath {
         private String dateNow;
         private String timeNow;

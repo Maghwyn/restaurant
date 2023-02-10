@@ -5,6 +5,9 @@ import org.bson.types.ObjectId;
 import java.util.Date;
 
 public class Report {
+    /**
+     * Model to generate the financial situation of the restaurant
+     */
     private ObjectId id;
     private Integer capital;
     private Integer expenditure;

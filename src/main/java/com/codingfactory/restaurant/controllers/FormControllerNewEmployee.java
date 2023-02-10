@@ -51,6 +51,11 @@ public class FormControllerNewEmployee implements Initializable, ControllerInter
         employeeJob.setItems(jobsList);
     }
 
+    /**
+     * Method to create a new employee
+     * Checks if all fields are filled
+     * @param e {@link MouseEvent}
+     */
     private void createNewEmployee(MouseEvent e) {
         String name = employeeName.getText();
         String job = (String) employeeJob.getValue();

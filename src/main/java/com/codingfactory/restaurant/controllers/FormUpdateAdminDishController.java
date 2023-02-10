@@ -69,11 +69,17 @@ public class FormUpdateAdminDishController implements Initializable, ControllerI
 
     }
 
+    /**
+     * Init singleTons instance of Dish to get the dish selected and active
+     */
     public void initInstance() {
         holder = DishHolder.getInstance();
         dishItem = holder.getDish();
     }
 
+    /**
+     * Add items values to filled all the fields to update the dish we want to
+     */
     public void setItemValues() {
         dishCategory.setValue(dishItem.getCategory());
         dishName.setText(dishItem.getName());
@@ -84,6 +90,11 @@ public class FormUpdateAdminDishController implements Initializable, ControllerI
         dishPrice.setText(String.valueOf(dishItem.getPrice()));
     }
 
+    /**
+     * Method to update the Dish, checks if all the fields are not empty
+     * Update the dish into the DB
+     * @param e {@link MouseEvent}
+     */
     public void updateDish(MouseEvent e) {
         if (dishName.getText().equals("") || dishDescription.getText().equals("") || dishPrice.getText().equals("") || dishUrl.getText().equals("") || dishCostPrice.getText().equals("") || dishQuantity.getText().equals("") || dishCategory.getValue().equals(null)) {
             errorMessage.setText("Veuillez remplir tous les champs.");
@@ -112,6 +123,10 @@ public class FormUpdateAdminDishController implements Initializable, ControllerI
 
     }
 
+    /**
+     * Method to delete the dish we want to delete into the DB
+     * @param e {@link MouseEvent}
+     */
     public void deleteDishItem(MouseEvent e) {
         Bson query = eq("_id", dishItem.getId());
         try {
