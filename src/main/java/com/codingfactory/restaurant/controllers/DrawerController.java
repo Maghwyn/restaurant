@@ -116,7 +116,7 @@ public class DrawerController implements Initializable, FactoryInterface {
         }
 
         if(target.equals(Target.COMMANDS)) {
-            factoryController.setIncludedFXML("views/page3.fxml");
+            factoryController.setIncludedFXML("views/commandsLayout.fxml");
             return;
         }
 
