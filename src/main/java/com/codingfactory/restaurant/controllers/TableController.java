@@ -299,6 +299,7 @@ public class TableController implements Initializable, FactoryInterface {
         long count = tables().countDocuments(new Document("places", places));
         return count;
     }
+
     /**
      *  Empty the list if it is not.
      *     Sorts the tables according to their statue.

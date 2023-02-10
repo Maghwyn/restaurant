@@ -85,6 +85,10 @@ public class FormAddCommandController implements Initializable, ControllerInterf
         majCommand.setOnMouseClicked(this::updateCommand);
     }
 
+    /**
+     * Method to update command in db
+     * @param e {@link MouseEvent}
+     */
     public void updateCommand(MouseEvent e) {
         Command currentCommand = commandController.currentCommand;
 //        int totalPrice = listDishesToDb.stream().map(n -> n.getPrice()).reduce((integer, integer2);
@@ -111,12 +115,19 @@ public class FormAddCommandController implements Initializable, ControllerInterf
         coll.updateOne(new Document("_id", currentCommand.getId()), new Document("$set", doc));
     }
 
+    /**
+     * Method to set text fields rendered in the layout
+     */
     public void addFields() {
         Command currentCommand = commandController.currentCommand;
         tableId.setText(currentCommand.getTableId());
         statusChoice.setValue(currentCommand.getStatus());
     }
 
+    /**
+     * Method to select a dish and add it into a list to update the list of dishes chosen in the DB
+     * @param e {@link MouseEvent}
+     */
     public void addDish(MouseEvent e) {
         TableRow row = (TableRow) e.getSource();
         dishToAdd = (Dish) row.getItem();
@@ -140,6 +151,9 @@ public class FormAddCommandController implements Initializable, ControllerInterf
 
     }
 
+    /**
+     * Method to append dish list in the Table View
+     */
     public void addDishesList() {
         tableViewDishes.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         ObservableList<Dish> dishListAppend;
@@ -148,7 +162,10 @@ public class FormAddCommandController implements Initializable, ControllerInterf
     }
 
 
-
+    /**
+     * Method to get all the dish from the DB
+     * @return list {@link List<Dish>}
+     */
     public ObservableList getAllDishes() {
         int pos;
         MongoCollection coll = MongoConnection.getDatabase().getCollection("dish");

@@ -50,10 +50,20 @@ public class FormControllerNewMenu implements Initializable, ControllerInterface
         clientNumber.setOnKeyReleased(this::verifyCapacity);
     }
 
+    /**
+     * Method to get the database her Commands
+     * @return MongoCollection (commands)
+     */
     private MongoCollection commands() {
         return MongoConnection.getDatabase().getCollection("commands");
     }
 
+    /**
+     * Method to create a command in MongoDB
+     * Iterates on all the commands from the table ID with persons presents
+     * @param cnb commandNumber
+     * @param tid TableId
+     */
     private void setPendingCommands(int cnb, String tid) {
         List<Document> docs = new ArrayList();
 
@@ -70,6 +80,10 @@ public class FormControllerNewMenu implements Initializable, ControllerInterface
         commands().insertMany(docs);
     }
 
+    /**
+     * Method to check if persons can be sat on the table and if capacity of table is OKAY
+     * @param e {@link KeyEvent}
+     */
     private void verifyCapacity(KeyEvent e) {
         String strCnb = clientNumber.getText();
         if(strCnb.isEmpty() || strCnb.isBlank()) return;
@@ -95,6 +109,10 @@ public class FormControllerNewMenu implements Initializable, ControllerInterface
         }
     }
 
+    /**
+     * Method to create and book a table and check if all fields are filled
+     * @param e {@link MouseEvent}
+     */
     private void bookTable(MouseEvent e) {
         String strCnb = clientNumber.getText();
 
