@@ -1,0 +1,15 @@
+.free {
+    -fx-background-color: #21cf4444;
+    -fx-background-radius: 20;
+    -fx-cursor: hand;
+}
+
+.occupied {
+    -fx-background-color: #cf212144;
+    -fx-background-radius: 20;
+    -fx-cursor: hand;
+}
+
+Label {
+   -fx-font-size: 18px;
+}
