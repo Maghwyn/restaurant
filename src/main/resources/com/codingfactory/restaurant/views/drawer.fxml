@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane fx:id="drawerContainer" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="250.0" prefWidth="250.0" styleClass="drawerContainer" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.codingfactory.restaurant.controllers.DrawerController">
+<StackPane fx:id="drawerContainer" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="250.0" minWidth="250.0" prefWidth="250.0" styleClass="drawerContainer" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.codingfactory.restaurant.controllers.DrawerController">
    <children>
       <GridPane fx:id="drawer" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
         <columnConstraints>
@@ -18,6 +18,7 @@
         </columnConstraints>
         <rowConstraints>
           <RowConstraints maxHeight="60.0" minHeight="50.0" prefHeight="60.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="60.0" minHeight="50.0" prefHeight="60.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="60.0" minHeight="50.0" prefHeight="60.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="60.0" minHeight="50.0" prefHeight="60.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="60.0" minHeight="50.0" prefHeight="60.0" vgrow="SOMETIMES" />
@@ -61,7 +62,16 @@
                   </Label>
                </children>
             </HBox>
-            <HBox fx:id="report" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="drawerOption" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+             <HBox fx:id="stats" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="drawerOption" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="4" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+                 <children>
+                     <Label text="Dashboard">
+                         <font>
+                             <Font size="17.0" />
+                         </font>
+                     </Label>
+                 </children>
+             </HBox>
+            <HBox fx:id="report" alignment="CENTER" prefHeight="100.0" prefWidth="200.0" styleClass="drawerOption" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                <children>
                   <Label text="Générer mon rapport financier">
                      <font>
@@ -70,7 +80,7 @@
                   </Label>
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="5" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.rowIndex="6" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
                <children>
                   <Button fx:id="drawerToggle" mnemonicParsing="false" styleClass="drawerToggle" text="Swittch" />
                </children>
