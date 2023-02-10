@@ -4,43 +4,44 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.codingfactory.restaurant.controllers.DishesController">
+<VBox fx:id="containerToAppendGrid" spacing="60.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.codingfactory.restaurant.controllers.DishesController">
    <children>
-      <VBox fx:id="containerToAppendGrid" prefHeight="200.0" prefWidth="100.0">
+      <HBox alignment="CENTER" spacing="145.0">
          <children>
-            <HBox alignment="CENTER" prefHeight="64.0" prefWidth="485.0" spacing="145.0">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="LA CARTE" />
+            <VBox alignment="CENTER" spacing="6.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="LA CARTE" />
-                  <VBox prefHeight="200.0" prefWidth="100.0" spacing="6.0">
+                  <HBox alignment="CENTER">
                      <children>
-                        <HBox alignment="CENTER" prefHeight="64.0" prefWidth="239.0">
-                           <children>
-                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="plats du restaurant : " />
-                              <ToggleButton fx:id="seeAllDishes" mnemonicParsing="false" prefHeight="26.0" prefWidth="42.0" text="ToggleButton" textOverrun="CENTER_ELLIPSIS" />
-                           </children>
-                           <VBox.margin>
-                              <Insets />
-                           </VBox.margin>
-                        </HBox>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="plats du restaurant : " />
+                        <ToggleButton fx:id="seeAllDishes" mnemonicParsing="false" prefHeight="26.0" prefWidth="7.0" text="ToggleButton" textOverrun="CENTER_ELLIPSIS" />
                      </children>
-                     <HBox.margin>
+                     <VBox.margin>
                         <Insets />
-                     </HBox.margin>
-                  </VBox>
-                  <Button fx:id="openFormAddDish" mnemonicParsing="false" text="ajouter un plat" />
+                     </VBox.margin>
+                  </HBox>
                </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="41.0" prefWidth="600.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Les entrées" />
-               </children>
-            </HBox>
-            <VBox fx:id="containerAddGrid" prefHeight="200.0" prefWidth="100.0" />
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </VBox>
+            <Button fx:id="openFormAddDish" mnemonicParsing="false" text="ajouter un plat" />
          </children>
-      </VBox>
+      </HBox>
+      <HBox alignment="CENTER">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Les entrées" />
+         </children>
+      </HBox>
+      <VBox fx:id="containerAddGrid" VBox.vgrow="ALWAYS" />
    </children>
-</StackPane>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+   <padding>
+      <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+   </padding>
+</VBox>
