@@ -4,15 +4,16 @@ import org.bson.types.ObjectId;
 
 public class Table {
     private ObjectId id;
-    private int places;
-    private int name;
+    private int zone;
+    private String number;
     private boolean status;
     private int nbrChairs;
     private int nbrTaken;
 
-    public Table(int places, int name, boolean status, int nbrChair, int nbrTaken){
-        this.places = places;
-        this.name = name;
+    public Table(ObjectId id, int zone, String number, boolean status, int nbrChair, int nbrTaken){
+        this.id = id;
+        this.zone = zone;
+        this.number = number;
         this.status=status;
         this.nbrChairs=nbrChair;
         this.nbrTaken=nbrTaken;
@@ -26,20 +27,20 @@ public class Table {
         this.id = id;
     }
 
-    public int getName() {
-        return name;
+    public String getNumber() {
+        return number;
     }
 
-    public void setName(int name) {
-        this.name = name;
+    public void setNumber(String number) {
+        this.number = number;
     }
 
-    public int getPlaces() {
-        return places;
+    public int getZone() {
+        return zone;
     }
 
-    public void setPlaces(int places) {
-        this.places = places;
+    public void setZone(int places) {
+        this.zone = places;
     }
 
     public boolean getStatus() {
