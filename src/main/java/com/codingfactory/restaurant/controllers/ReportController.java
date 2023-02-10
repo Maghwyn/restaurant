@@ -21,23 +21,44 @@ import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class ReportController implements Initializable, FactoryInterface {
+/**
+ * Class ReportController is a controller class with a reference to the layout FactoryController.
+ * It is responsible for displaying the report page defined in the DrawerController (the pdf generator).
+ * It implements the Initializable interface.
+ * Initializable is used to initialize the components of the dialog.
+ */
+public class ReportController implements Initializable {
     @FXML
     private Button generate;
 
     @FXML
     private Label resultMessage;
 
+    /**
+     * @return The mongodb collection revenues.
+     */
     private MongoCollection revenues() {
         return MongoConnection.getDatabase().getCollection("revenues");
     }
 
 
     @Override
+    /**
+     * Method initialize, initializes the report page component on load.
+     * It sets the event to the button so that it call the function that will trigger the generation of the PDF.
+     * @param url URL to initialize the components.
+     * @param resourceBundle ResourceBundle to initialize the components.
+     */
     public void initialize(URL location, ResourceBundle resources) {
         generate.setOnMouseClicked(this::generatePDF);
     }
 
+    /**
+     * Method generatePDF will build the PDF and wait for a return boolean value.
+     * This boolean value will be used to display a message to let the user know of a fail or a succeed.
+     * Remove this message after 3 seconds.
+     * @param e MouseEvent that triggered the method.
+     */
     private void generatePDF(MouseEvent e) {
         List<Report> reports = getLastThreeReports();
         PDFGenerator generator = new PDFGenerator();
@@ -60,6 +81,11 @@ public class ReportController implements Initializable, FactoryInterface {
         thread.start();
     }
 
+    /**
+     * Method getLastThreeReports will retrieve all the reports from the mongodb revenues collection.
+     * And finally sort them out based on their date of creation.
+     * @return The 3 latest report model.
+     */
     private List<Report> getLastThreeReports() {
         ArrayList<Report> arrayReport = new ArrayList();
 
@@ -83,7 +109,4 @@ public class ReportController implements Initializable, FactoryInterface {
                 .sorted((o1, o2) -> o2.getCreatedAt().compareTo(o1.getCreatedAt()))
                 .limit(3).toList();
     }
-
-    @Override
-    public void setFactoryController(FactoryController controller) {}
 }
