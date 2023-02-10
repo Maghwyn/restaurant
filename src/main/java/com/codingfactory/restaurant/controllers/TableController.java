@@ -268,19 +268,6 @@ public class TableController implements Initializable, FactoryInterface {
         return count;
     }
 
-    public List<Document> getTablesOptions(int ncb) {
-        MongoCursor<Document> cursor = tables().find(Filters.gte("nbrChairs", ncb)).iterator();
-        List<Document> documents = new ArrayList<>();
-        try {
-            while (cursor.hasNext()) {
-                documents.add(cursor.next());
-            }
-        } finally {
-            cursor.close();
-        }
-        return documents;
-    }
-
     public ObservableList<Table> getTablesFiltered() {
         if(tablesList != null) {
             attend = new ArrayList();

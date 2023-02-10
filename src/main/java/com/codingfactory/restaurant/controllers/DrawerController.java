@@ -12,6 +12,10 @@ import javafx.scene.layout.StackPane;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+/**
+ * Enum Target define each navigation pages value that will be used to identify
+ * the user action on click.
+ */
 enum Target {
     MENU,
     TABLES,
@@ -21,11 +25,22 @@ enum Target {
     REPORT,
 }
 
+/**
+ * Enum State define the open action state of the drawer.
+ */
 enum State {
     OPEN,
     CLOSED,
 }
 
+
+/**
+ * Class DrawerController is a controller that manage the content displayed when navigating on the application.
+ * It sets a drawer navigation bar on the side of the application that is closable to make space.
+ * It implements the Initializable and FactoryInterface interfaces.
+ * FactoryInterface is used to set the layout parent controller.
+ * Initializable is used to initialize the components of the dialog.
+ */
 public class DrawerController implements Initializable, FactoryInterface {
     @FXML
     private GridPane drawer;
@@ -36,6 +51,9 @@ public class DrawerController implements Initializable, FactoryInterface {
     @FXML
     private Button drawerToggle;
 
+    /**
+     * All of the Hbox below are the navigation options.
+     */
     @FXML
     private HBox menu;
 
@@ -54,10 +72,20 @@ public class DrawerController implements Initializable, FactoryInterface {
     @FXML
     private HBox report;
 
+    /**
+     * The layout FactoryController that manage all others controllers.
+     */
     private FactoryController factoryController;
 
 
     @Override
+    /**
+     * Method initialize, initializes the drawer component on load.
+     * Set all the buttons with a custom property based of an enum to load the routes.
+     * Set all the buttons with a router event to navigate on the application.
+     * @param url URL to initialize the components.
+     * @param resourceBundle ResourceBundle to initialize the components.
+     */
     public void initialize(URL url, ResourceBundle resourceBundle) {
         drawerToggle.getProperties().put("state", State.OPEN);
         menu.getProperties().put("target", Target.MENU);
@@ -77,10 +105,18 @@ public class DrawerController implements Initializable, FactoryInterface {
     }
 
     @Override
+    /**
+     * Set the factoryController to the router class, so we can have access to its public functions.
+     * @param controller: the parent of the Class DrawerController.
+     */
     public void setFactoryController(FactoryController controller) {
         this.factoryController = controller;
     }
 
+    /**
+     * Method drawerAction toggle the size of the drawer between open and semi-closed.
+     * @param e MouseEvent that triggered the method.
+     */
     private void drawerAction(MouseEvent e) {
         Button toggle = (Button) e.getSource();
         State state = (State) toggle.getProperties().get("state");
@@ -101,6 +137,11 @@ public class DrawerController implements Initializable, FactoryInterface {
         }
     }
 
+    /**
+     * Method routerGoto is effectively the router itself.
+     * It retrieves the property target to identify which Fxml file to load.
+     * @param e MouseEvent that triggered the method.
+     */
     private void routerGoto(MouseEvent e) {
         HBox menuOption = (HBox) e.getSource();
         Target target = (Target) menuOption.getProperties().get("target");
