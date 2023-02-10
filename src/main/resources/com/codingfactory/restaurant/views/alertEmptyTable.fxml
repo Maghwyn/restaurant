@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+
+<VBox fx:controller="com.codingfactory.restaurant.controllers.AlertControllerEmptyTable" alignment="TOP_CENTER" spacing="40.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Label text="Est-ce que vous êtes certain de vouloir libérer cette table ?" />
+        <HBox alignment="CENTER" spacing="50.0">
+            <children>
+                <Button fx:id="cancel" defaultButton="true" mnemonicParsing="false" text="Non, annuler" />
+                <Button fx:id="delete" mnemonicParsing="false" text="Oui, certain" />
+            </children>
+        </HBox>
+    </children>
+    <padding>
+        <Insets bottom="30.0" left="20.0" right="20.0" top="30.0" />
+    </padding>
+</VBox>
