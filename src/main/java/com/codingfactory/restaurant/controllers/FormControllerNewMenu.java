@@ -88,8 +88,10 @@ public class FormControllerNewMenu implements Initializable, ControllerInterface
         if(cnb > currentTable.getNbrChairs()) {
             errorMessage.setText("Limite maximal de cette table dépassée");
             errorMessage.setVisible(true);
+            bookTableBtn.setDisable(true);
         } else {
             errorMessage.setVisible(false);
+            bookTableBtn.setDisable(false);
         }
     }
 
