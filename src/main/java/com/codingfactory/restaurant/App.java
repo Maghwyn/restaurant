@@ -15,9 +15,18 @@ import java.io.IOException;
 public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
+        /**
+         * Load the first layout of the application at launch
+         */
         FXMLLoader layoutLoader = new FXMLLoader(App.class.getResource("views/layout.fxml"));
+        /**
+         * Load the layout
+         */
         Parent layout = layoutLoader.load();
         FactoryController factoryController = layoutLoader.getController();
+        /**
+         * Set the layout on the Application
+         */
         factoryController.setApp(this);
 
         Screen screen = Screen.getPrimary();
@@ -34,10 +43,12 @@ public class App extends Application {
         stage.setScene(scene);
         stage.show();
 
-        // database use Connection
-        MongoDatabase db = MongoConnection.getDatabase();
     }
 
+    /**
+     * Launch the main application
+     * @param args
+     */
     public static void main(String[] args) {
         launch();
     }
