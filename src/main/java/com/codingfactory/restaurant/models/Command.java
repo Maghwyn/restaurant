@@ -7,15 +7,15 @@ import java.util.Date;
 
 public class Command {
     private ObjectId id;
+    private Date createdAt;
 
-    public Command(ObjectId id, ObjectId tableId, String status, ArrayList dishes, int total, Date dateCommand, Date datePayed) {
+    public Command(ObjectId id, String tableId, String status, ArrayList dishes, int total, Date createdAt) {
         this.id = id;
         this.tableId = tableId;
         this.status = status;
         this.dishes = dishes;
         this.total = total;
-        this.dateCommand = dateCommand;
-        this.datePayed = datePayed;
+        this.createdAt = createdAt;
     }
 
     public ObjectId getId() {
@@ -26,11 +26,11 @@ public class Command {
         this.id = id;
     }
 
-    public ObjectId getTableId() {
+    public String getTableId() {
         return tableId;
     }
 
-    public void setTableId(ObjectId tableId) {
+    public void setTableId(String tableId) {
         this.tableId = tableId;
     }
 
@@ -58,28 +58,18 @@ public class Command {
         this.total = total;
     }
 
-    public Date getDateCommand() {
-        return dateCommand;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setDateCommand(Date dateCommand) {
-        this.dateCommand = dateCommand;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public Date getDatePayed() {
-        return datePayed;
-    }
-
-    public void setDatePayed(Date datePayed) {
-        this.datePayed = datePayed;
-    }
-
-    private ObjectId tableId;
+    private String tableId;
     private String status;
     private ArrayList dishes;
     private int total;
-    private Date dateCommand;
-    private Date datePayed;
 
 
 

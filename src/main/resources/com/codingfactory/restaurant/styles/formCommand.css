@@ -1,0 +1,12 @@
+/*.table-row-cell {*/
+/*    -fx-background-color: #92a6b5;*/
+/*}*/
+.selected {
+    -fx-background-color: #92a6b5;
+}
+/*.table-row-cell:selected {*/
+/*    -fx-background-color: #92a6b5;*/
+/*}*/
+/*.table-row-cell:selected .text {*/
+/*    -fx-background-color: #92a6b5;*/
+/*}*/
