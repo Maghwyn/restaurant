@@ -3,10 +3,13 @@ package com.codingfactory.restaurant.controllers;
 
 import com.codingfactory.restaurant.interfaces.ControllerInterface;
 import com.codingfactory.restaurant.models.Employee;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
@@ -19,7 +22,7 @@ public class FormControllerEditEmployee implements Initializable, ControllerInte
     private TextField employeeName;
 
     @FXML
-    private TextField employeeJob;
+    private ComboBox employeeJob;
 
     @FXML
     private TextField employeeWorkedHours;
@@ -49,12 +52,23 @@ public class FormControllerEditEmployee implements Initializable, ControllerInte
         editEmployeeButton.setOnMouseClicked(this::editEmployee);
         warningCheckbox.setOnMouseClicked(this::toggleFireButton);
         fireEmployeeButton.setOnMouseClicked(this::fireEmployee);
+
+        ObservableList<String> jobsList = FXCollections.observableArrayList();
+        jobsList.add("plongeur");
+        jobsList.add("chef");
+        jobsList.add("sous-chef");
+        jobsList.add("serveur");
+        jobsList.add("bar/tabac");
+        jobsList.add("technicien");
+        jobsList.add("comptable");
+
+        employeeJob.setItems(jobsList);
     }
 
     private void fillFormData() {
         Employee editEmployee = employeeController.getCurrentEmployeeDetails();
         employeeName.setText(editEmployee.getName());
-        employeeJob.setText(editEmployee.getJob());
+        employeeJob.setValue(editEmployee.getJob());
         employeeWorkedHours.setText(editEmployee.getWorkedHours().toString());
     }
 
@@ -72,7 +86,7 @@ public class FormControllerEditEmployee implements Initializable, ControllerInte
 
     private void editEmployee(MouseEvent e) {
         String name = employeeName.getText();
-        String job = employeeJob.getText();
+        String job = (String) employeeJob.getValue();
         String strWorkedHours = employeeWorkedHours.getText();
 
         if(name.isEmpty() || job.isEmpty() || strWorkedHours.isEmpty()) {

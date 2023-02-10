@@ -2,9 +2,12 @@ package com.codingfactory.restaurant.controllers;
 
 import com.codingfactory.restaurant.interfaces.ControllerInterface;
 import com.codingfactory.restaurant.models.Employee;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
@@ -17,7 +20,7 @@ public class FormControllerNewEmployee implements Initializable, ControllerInter
     private TextField employeeName;
 
     @FXML
-    private TextField employeeJob;
+    private ComboBox employeeJob;
 
     @FXML
     private Button createEmployeeButton;
@@ -35,11 +38,22 @@ public class FormControllerNewEmployee implements Initializable, ControllerInter
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         createEmployeeButton.setOnMouseClicked(this::createNewEmployee);
+
+        ObservableList<String> jobsList = FXCollections.observableArrayList();
+        jobsList.add("plongeur");
+        jobsList.add("chef");
+        jobsList.add("sous-chef");
+        jobsList.add("serveur");
+        jobsList.add("bar/tabac");
+        jobsList.add("technicien");
+        jobsList.add("comptable");
+
+        employeeJob.setItems(jobsList);
     }
 
     private void createNewEmployee(MouseEvent e) {
         String name = employeeName.getText();
-        String job = employeeJob.getText();
+        String job = (String) employeeJob.getValue();
 
         if(name.isEmpty() || job.isEmpty()) {
             errorMessage.setText("Tous les champs sont requis");
