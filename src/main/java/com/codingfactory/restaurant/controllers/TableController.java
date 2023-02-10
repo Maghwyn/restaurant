@@ -30,7 +30,10 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
-//set up the status for table
+/**
+ * set up the status for table
+ */
+
 enum TableStatus {
     FREE(false),
     OCCUPIED(true);
@@ -45,7 +48,10 @@ enum TableStatus {
         return value;
     }
 }
-// set up the zone for table
+    /**
+     * set up the zone for table
+      */
+
 enum TableZone {
     TERRACE(0),
     HALL(1),
@@ -102,8 +108,11 @@ public class TableController implements Initializable, FactoryInterface {
     private int tableZone = -1;
 
     private String tableNumber = null;
-//Initialize the filter for button and their mouse action
+/**
+ * Initialize the filter for button and their mouse action
+ * */
     @Override
+
     public void initialize(URL url, ResourceBundle resourceBundle) {
         sortFreeBtn.getProperties().put("status", TableStatus.FREE.getValue());
         sortOccupiedBtn.getProperties().put("status", TableStatus.OCCUPIED.getValue());
@@ -127,12 +136,15 @@ public class TableController implements Initializable, FactoryInterface {
     public void setFactoryController(FactoryController controller) {
         this.factoryController = controller;
     }
-//connection at the mongo BDD
+/**
+ * connection at the mongo BDD
+ * */
     private MongoCollection tables() {
         return MongoConnection.getDatabase().getCollection("tables");
     }
-/*set up the pop-up for create a new table, release a table, book a table
-* */
+/**
+ * set up the pop-up for create a new table, release a table, book a table
+ */
     private void openCreateTableModal(MouseEvent e) {
         factoryController.openModal("views/formNewTable.fxml", this);
     }
@@ -154,7 +166,8 @@ public class TableController implements Initializable, FactoryInterface {
         currentTable = null;
         factoryController.forceCloseModal();
     }
-    /*get the status value of the button for setting up the filter and display the table with the same value.
+    /**
+     * get the status value of the button for setting up the filter and display the table with the same value.
       setFilterZone() : same method for the zone value.*/
     private void setFilterStatus(MouseEvent e) {
         Button btn = (Button) e.getSource();
@@ -177,7 +190,11 @@ public class TableController implements Initializable, FactoryInterface {
         getTablesFiltered();
         fillGrid();
     }
-//display the table with the same name as the input
+
+    /**
+     * display the table with the same name as the input
+     */
+
     private void setFilterSearch(MouseEvent e) {
         String input = searchInput.getText();
         if(input.isEmpty() || input.isBlank()) return;
@@ -221,7 +238,9 @@ public class TableController implements Initializable, FactoryInterface {
 
         return vbox;
     }
-    //Create a grid and inject the found tables
+    /**
+     * Create a grid and inject the found tables
+     * */
     private void fillGrid() {
         gridTableContainer.getChildren().clear();
         if(tablesList.size() == 0) return;
@@ -235,7 +254,11 @@ public class TableController implements Initializable, FactoryInterface {
                     gridTableContainer.add(setGridFactory(table), col, row);
                 });
     }
-//set a new table in BDD
+
+    /**
+     * set a new table in BDD
+     */
+
     public void createNewTable(Table table) {
         ObjectId id = new ObjectId();
 
@@ -251,7 +274,11 @@ public class TableController implements Initializable, FactoryInterface {
         getTablesFiltered();
         fillGrid();
     }
-    //edit an existing table in bdd
+
+    /**
+     * edit an existing table in bdd
+     */
+
     public void editTable(Table table) {
         Document editTable = new Document("number", table.getNumber())
                 .append("zone", table.getZone())
@@ -263,17 +290,21 @@ public class TableController implements Initializable, FactoryInterface {
         getTablesFiltered();
         fillGrid();
     }
-    //counter number of table in places
+
+    /**
+     * counter number of table in places
+     */
+
     public long getTablesCount(int places) {
         long count = tables().countDocuments(new Document("places", places));
         return count;
     }
-    /*
-    Empty the list if it is not.
-    Sorts the tables according to their statue.
-    Assigns an area to the object.
-    Assigns a name to the object.
-    Retrieves all the information to create a new table in the list.
+    /**
+     *  Empty the list if it is not.
+     *     Sorts the tables according to their statue.
+     *     Assigns an area to the object.
+     *     Assigns a name to the object.
+     *     Retrieves all the information to create a new table in the list.
      */
     public ObservableList<Table> getTablesFiltered() {
         if(tablesList != null) {
